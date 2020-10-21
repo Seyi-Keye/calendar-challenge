@@ -1,0 +1,14 @@
+node_modules
+README.md
+webpack.config.js
+webpack.config.dev.js
+webpack.config.prod.js
+webpack.config.common.js
+webpack.config.server.js
+.babelrc
+public/bundle.js
+server/migrations/
+screenshots
+reports
+coverage
+.vscode
