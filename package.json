@@ -4,6 +4,11 @@
   "description": "This is  a Week View app using React that integrates with Google Calendar.",
   "main": "index.js",
   "scripts": {
+    "buildDev": "rm -rf dist && webpack --config webpack.config.server.js && webpack --config webpack.config.dev.js",
+    "buildProd": "rm -rf dist && webpack --mode production --config webpack.config.server.js && webpack --mode production --config webpack.config.prod.js",
+    "build": "rm -rf dist && webpack --mode development --config webpack.config.server.js && webpack --config=webpack.config.prod.js",
+    "start": "node ./dist/server.js",
+    "start:server:dev": "nodemon --exec babel-node server-dev.js",
     "test": "yarn test"
   },
   "repository": {
@@ -43,6 +48,8 @@
     "webpack-node-externals": "^2.5.2"
   },
   "devDependencies": {
+    "@babel/node": "^7.12.1",
+    "@babel/preset-react": "^7.12.1",
     "dotenv": "^8.2.0",
     "eslint": "^7.11.0",
     "html-webpack-plugin": "^4.5.0",
