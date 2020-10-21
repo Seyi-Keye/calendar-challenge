@@ -1,10 +1,8 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import { render } from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
+import App from './components/App';
 
 render(
-    <Router>
-      <h1>I am excited!!!!!!!!</h1>
-    </Router>,
+      <App />,
   document.getElementById('app')
 );

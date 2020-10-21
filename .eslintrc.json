@@ -13,6 +13,7 @@
   "parser": "babel-eslint",
   "rules": {
     "arrow-parens": [0, "as-needed", { "requireForBlockBody": true }],
-    "comma-dangle": 0
+    "comma-dangle": 0,
+    "semi-colons": 0
   }
 }
