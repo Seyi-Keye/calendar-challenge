@@ -11,12 +11,12 @@ $currentDayBackgroundColor: #5d6ae4;
   box-sizing: border-box;
   display: flexbox;
   background-color: $backgroundColor;
+  color: $fontColor;
 }
 
 .header {
-  color: $fontColor;
-  height: 10%;
-  padding: 0.5em;
+  height: 5%;
+  margin: 1em 0;
 }
 
 hr {
@@ -35,11 +35,49 @@ hr {
 
 .calendars {
   width: 15%;
+
+  p {
+    padding-left: 1.7em;
+    font-weight: 800;
+    margin-bottom: 0.1em;
+    font-size: small;
+  }
+
+  & ul {
+    margin: 0;
+    padding: 10px;
+  }
+
+  & ul li {
+    list-style: none;
+    margin-bottom: 10px;
+  }
 }
 
 .calendar {
   background-color: white;
   width: 85%;
   border-radius: 10px;
-  margin: 3px;
+  margin: 1em 0.3em 0.3em 0.3em;
+}
+
+.card {
+  flex-direction: row;
+  display: flex;
+  border-radius: 5px;
+  height: 1.7em;
+  padding: 5px;
+
+  &.selected {
+    background-color: white;
+    box-shadow: 1px 1px 2px 1px #bcbcbc;
+  }
+
+  .calendar-color {
+    height: 0.1em;
+    border-radius: 50%;
+    background-color: #090808;
+    padding: 0.3em;
+    margin: 0.2em 0.5em;
+  }
 }

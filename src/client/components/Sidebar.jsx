@@ -1,15 +1,18 @@
 import React from 'react';
 
 const Sidebar = () => {
-  const mock = [{ title: 'Titi' }, { title: 'Tope' }];
+  const mock = [{ title: 'Titi' }, { title: 'Tope' }, { title: 'Toyin' }];
   return (
     <div className="calendars">
-      <p>Calendars</p>
+      <p>CALENDARS</p>
       <ul>
         {mock.map((calendar) => {
           return (
             <li key={calendar.title}>
-              <div className="card">{calendar.title}</div>
+              <div className="card selected">
+                <div className="calendar-color"></div>
+                {calendar.title}
+              </div>
             </li>
           );
         })}
