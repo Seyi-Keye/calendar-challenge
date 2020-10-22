@@ -1,0 +1,63 @@
+{
+  "calenderEvents" : {
+    "timeZone": "Africa/Lagos",
+    "events": [{
+      "description": "Managing conflict",
+      "summary": "Suggestion box",
+      "status": "confirmed",
+      "start": {"dateTime": "2020-10-21T16:30:00+01:00", "date": "2020-10-29"},
+      "end": {"dateTime": "2020-10-21T17:30:00+01:00", "date": "2020-10-29"},
+      "etag": "3206432205168000",
+      "id": "17jahk74u2r79ih35in4nv81ft",
+      "visibility": "public"
+    }]
+  },
+  "calendars": {
+    "etag": "p338flpdirn1uo0g",
+    "kind": "calendar#calendarList",
+    "items": [
+        {
+        "kind": "calendar#calendarListEntry",
+        "backgroundColor": "#9a9cff",
+        "foregroundColor": "#000000",
+        "id": "aromokeyes2@gmail.com",
+        "primary": true,
+        "selected": true,
+        "summary": "aromokeyes2@gmail.com",
+        "timeZone": "Africa/Lagos"
+      },
+      {
+        "kind": "calendar#calendarListEntry",
+        "backgroundColor": "#92e1c0",
+        "foregroundColor": "#000000",
+        "id": "addressbook#contacts@group.v.calendar.google.com",
+        "selected": true,
+        "description": "Displays birthdays, anniversaries, and other event dates of people in Google Contacts.",
+        "summary": "Birthdays",
+        "timeZone": "Africa/Lagos"
+      },
+      {
+        "kind": "calendar#calendarListEntry",
+        "backgroundColor": "#16a765",
+        "foregroundColor": "#000000",
+        "id": "en.christian#holiday@group.v.calendar.google.com",
+        "selected": true,
+        "description": "Christian Holidays",
+        "summary": "Christian Holidays",
+        "timeZone": "Africa/Lagos"
+      },
+      {
+        "kind": "calendar#calendarListEntry",
+        "backgroundColor": "#16a765",
+        "foregroundColor": "#000000",
+        "id": "en.ng#holiday@group.v.calendar.google.com",
+        "selected": true,
+        "description": "Holidays and Observances in Nigeria",
+        "summary": "Holidays in Nigeria",
+        "timeZone": "Africa/Lagos"
+      }
+    ]
+  }
+}
+  
+  

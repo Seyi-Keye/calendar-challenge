@@ -35,17 +35,17 @@ module.exports = {
           },
         ],
       },
-      {
-        enforce: 'pre',
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'eslint-loader',
-        options: {
-          emitWarning: true,
-          failOnError: false,
-          failOnWarning: false,
-        },
-      },
+      // {
+      //   enforce: 'pre',
+      //   test: /\.js$/,
+      //   exclude: /node_modules/,
+      //   loader: 'eslint-loader',
+      //   options: {
+      //     emitWarning: true,
+      //     failOnError: false,
+      //     failOnWarning: false,
+      //   },
+      // },
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
@@ -72,7 +72,13 @@ module.exports = {
               limit: 8192,
             },
           },
-        ],}
+        ]
+      },
+      {
+        test: /\.json5$/i,
+        loader: 'json5-loader',
+        type: 'javascript/auto',
+      },
     ],
   },
   plugins: [

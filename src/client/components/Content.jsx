@@ -1,13 +1,17 @@
 import React from 'react';
+import { getWeekDates, getDay } from '../date.js';
 
-const Content = () => {
+const Content = (props) => {
+  const { selectedEvents } = props;
+
+  const getWeek = getWeekDates();
   const weekdays = [
     'Sunday',
     'Monday',
     'Tuesday',
     'Wednesday',
     'Thursday',
-    'Friiday',
+    'Friday',
     'Saturday',
   ];
 
@@ -27,13 +31,28 @@ const Content = () => {
       </div>
     ));
   };
+
+  // const displayEvent = () => {
+  //   console.log('ttt', selectedEvents);
+  //   return selectedEvents.map((event) => {
+  //     const { summary, start, end } = event;
+  //     const startDate = start.date || start.dateTime;
+  //     const endDate = end.date || end.dateTime;
+
+  //     const dates = getWeekDates.map(date => {
+
+  //     })
+  //     <div>{summary + startDate + endDate}</div>;
+  //   });
+  // };
+
   return (
     <div className="calendar">
       <div className="weekdays with-text">
-        {weekdays.map((weekday) => {
+        {getWeek.map((weekday, i) => {
           return (
             <div className="weekday" key={weekday}>
-              {weekday}
+              {getDay(weekday)} {weekdays[i]}
             </div>
           );
         })}

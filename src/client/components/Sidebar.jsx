@@ -1,17 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const Sidebar = () => {
-  const mock = [{ title: 'Titi' }, { title: 'Tope' }, { title: 'Toyin' }];
+const Sidebar = (props) => {
+  const [toggleSelected, setToggleSelected] = useState(false);
+
+  // const handleCalendarSelection = (toggleSelected) =>
+  //   setToggleSelected(!toggleSelected);
+
   return (
     <div className="calendars">
       <p>CALENDARS</p>
       <ul>
-        {mock.map((calendar) => {
+        {props.calendars.map((calendar) => {
           return (
-            <li key={calendar.title}>
-              <div className="card selected">
-                <div className="calendar-color"></div>
-                {calendar.title}
+            <li key={calendar.id}>
+              <div
+                className={toggleSelected ? 'card selected' : 'card'}
+                onClick={() => {
+                  setToggleSelected(!toggleSelected);
+                }}
+              >
+                <div
+                  className="calendar-color"
+                  style={{ backgroundColor: calendar.backgroundColor }}
+                ></div>
+                {calendar.summary}
               </div>
             </li>
           );
