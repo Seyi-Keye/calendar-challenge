@@ -50,25 +50,29 @@ module.exports = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
-      // {
-      //   test: /(\.scss)$/,
-      //   loaders: ['style-loader', 'css-loader', 'sass-loader'],
-      // },
+      {
+        test: /(\.scss)$/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
       { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file' },
-      // { test: /\.(woff|woff2)$/, loader: 'url?prefix=font/&limit=5000' },
-      // {
-      //   test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-      //   loader: 'url?limit=10000&mimetype=application/octet-stream',
-      // },
-      // {
-      //   test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-      //   loader: 'url?limit=10000&mimetype=image/svg+xml',
-      // },
-      // {
-      //   test: /\.(jpg|png|svg|jpeg)$/,
-      //   loader: 'url-loader',
-      //   options: { limit: 25000 },
-      // },
+      { test: /\.(woff|woff2)$/, use: 'url?prefix=font/&limit=5000' },
+      {
+        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+        use: 'url?limit=10000&mimetype=application/octet-stream',
+      },
+      {
+        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        use: 'url?limit=10000&mimetype=image/svg+xml',
+      },
+      { test: /\.(png|jpg|gif|svg|jpeg)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+            },
+          },
+        ],}
     ],
   },
   plugins: [

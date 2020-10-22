@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
+$fontColor: #464646;
+$gridBorderColor: #ececec;
+$backgroundColor: #f4f3f1;
+$activeDayFontColor: #929292;
+$inactiveDayFontColor: #bcbcbc;
+$currentDayBackgroundColor: #5d6ae4;
+
+* {
+  box-sizing: border-box;
+  display: flexbox;
+  background-color: $backgroundColor;
+  color: $fontColor;
+}
+
+.header {
+  height: 5%;
+  margin: 1em 0;
+
+  p {
+    padding-left: 1.2em;
+    font-weight: 900;
+  }
+}
+
+hr {
+  height: 1px;
+  background-color: $activeDayFontColor;
+  border: none;
+}
+
+.page-layout {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  margin-top: 20px;
+  border-top: 1px solid grey;
+}
+
+.calendars {
+  width: 15%;
+
+  p {
+    padding-left: 1.7em;
+    font-weight: 800;
+    margin-bottom: 0.1em;
+    font-size: small;
+  }
+
+  & ul {
+    margin: 0;
+    padding: 10px;
+  }
+
+  & ul li {
+    list-style: none;
+    margin-bottom: 10px;
+  }
+}
+
+.calendar {
+  background-color: white;
+  width: 85%;
+  border-radius: 10px;
+  margin: 1em 0.3em 0.3em 0.3em;
+  box-shadow: -0.1px 0px 5px 0px #888888;
+  display: flex;
+  flex-direction: row;
+  height: fit-content;
+
+  .layout {
+    width: 100%;
+    display: flex;
+  }
+}
+
+.card {
+  flex-direction: row;
+  display: flex;
+  border-radius: 5px;
+  height: 1.7em;
+  padding: 5px;
+
+  &.selected {
+    background-color: white;
+    box-shadow: 1px 1px 2px 1px $inactiveDayFontColor;
+  }
+
+  .calendar-color {
+    height: 0.1em;
+    border-radius: 50%;
+    background-color: #090808;
+    padding: 0.3em;
+    margin: 0.2em 0.5em;
+  }
+}
+
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  width: 93%;
+
+  &.with-text {
+    padding-left: 5.26em;
+    width: 100%;
+  }
+}
+
+.weekday {
+  border-left: 1px solid grey;
+  text-align: center;
+  background-color: white;
+  padding: 1em;
+}
+
+.timeslots {
+  display: grid;
+  grid-template-rows: repeat(24, 1fr);
+  width: 7%;
+  background-color: white;
+  padding-top: 2em;
+}
+
+.timeslot {
+  background-color: white;
+  padding: 2em;
+  font-size: small;
+  font-weight: 600;
+}
