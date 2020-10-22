@@ -22,14 +22,14 @@ const Content = () => {
       hours.push(i + 'PM');
     }
     return hours.map((hour) => (
-      <div className="timeslot" key={hour}>
+      <div className="timeslot events" key={hour}>
         {hour}
       </div>
     ));
   };
   return (
     <div className="calendar">
-      {/* <div className="weekdays with-text">
+      <div className="weekdays with-text">
         {weekdays.map((weekday) => {
           return (
             <div className="weekday" key={weekday}>
@@ -37,14 +37,14 @@ const Content = () => {
             </div>
           );
         })}
-      </div> */}
+      </div>
       <div className="layout">
         <div className="timeslots">{time()}</div>
-        <div className="weekdays">
+        <div className="weekdays without-text">
           {weekdays.map((weekday) => {
             return (
               <div className="weekday" key={weekday}>
-                {weekday}
+                <div className="timeslots">{time()}</div>
               </div>
             );
           })}
