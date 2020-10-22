@@ -8,3 +8,6 @@ export const getWeekDates = () => {
 };
 
 export const getDay = (date) => date.getDate();
+
+export const getThisMonth = (date) => date.getMonth();
+export const getThisYear = (date) => date.getUTCFullYear();
