@@ -9,7 +9,8 @@
       "end": {"dateTime": "2020-10-21T17:30:00+01:00", "date": "2020-10-29"},
       "etag": "3206432205168000",
       "id": "17jahk74u2r79ih35in4nv81ft",
-      "visibility": "public"
+      "visibility": "public",
+      "category": "aromokeyes2@gmail.com"
     }, {
       "description": "Managing conflict",
       "summary": "Soro",
@@ -18,7 +19,8 @@
       "end": {"dateTime": "2020-10-21T17:30:00+01:00", "date": "2020-10-29"},
       "etag": "3206432205168000",
       "id": "17jahk74u2r79ih35in4nv81ft",
-      "visibility": "public"
+      "visibility": "public",
+      "category": "aromokeyes2@gmail.com"
     }]
   },
   "calendars": {

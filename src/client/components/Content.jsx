@@ -1,13 +1,17 @@
 import React from 'react';
-import { getWeekDates, getDay } from '../date.js';
-import { getHours, differenceInMinutes, getMinutes } from 'date-fns';
-import mock from '../mock.json';
+import {
+  getDay,
+  getDifferenceInMinutes,
+  getTheMinutes,
+  getWeekDates,
+  isSameDay,
+  isSameHour,
+} from '../date.js';
 
 const Content = (props) => {
   const { selectedEvents } = props;
 
   const getWeek = getWeekDates();
-  // con;
   const weekdays = [
     'Sunday',
     'Monday',
@@ -17,27 +21,13 @@ const Content = (props) => {
     'Friday',
     'Saturday',
   ];
-  const time = () => {
-    const hours = ['12AM'];
-    for (let i = 1; i < 12; i++) {
-      hours.push(i + 'AM');
-    }
 
-    hours.push('12PM');
-    for (let i = 1; i < 12; i++) {
-      hours.push(i + 'PM');
-    }
-    return hours.map((hour) => (
-      <div className="timeslot events" key={hour}>
-        {hour}
-      </div>
-    ));
-  };
   const range = (start, stop, step) =>
     Array.from(
       { length: (stop - start) / step + 1 },
       (_, i) => start + i * step
     );
+
   const timeConverter = () =>
     range(0, 24, 1).map((x) => {
       let time = null;
@@ -56,30 +46,33 @@ const Content = (props) => {
     });
 
   const getHeightOfEvent = (startTime, endTime) => {
-    const height = differenceInMinutes(new Date(startTime), new Date(endTime));
+    const height = getDifferenceInMinutes(startTime, endTime);
     return (height / 60) * 100;
   };
-  const eventConverter = (events, day, arrayOfSelected) => {
-    // getStartHours = events.map(event => getHours(x.startTime))
-    return range(0, 24, 1).map((x) => {
-      // if(getStartHours.includes(x)) {
-      let y = getHours;
-      let currentEvents = events.filter(
-        (event) =>
-          getHours(new Date(event.start.dateTime)) === x &&
-          getDay(new Date(event.start.dateTime)) === getDay(new Date(day))
-      );
-      if (currentEvents.length) {
-        // console.log('do we even get here?', event);
-        return currentEvents.map((event) => {
-          let eventHeight = getHeightOfEvent(
-            event.start.dateTime,
-            event.end.dateTime
-          );
-          let startPosition =
-            (getMinutes(new Date(event.start.dateTime)) / 60) * 100;
+
+  /** */
+  const eventConverter = (events, currentDay) => {
+    return range(0, 24, 1).map((hour) => {
+      let currentDayEvents = events.filter((event) => {
+        let { start, end } = event;
+        let startDate = start.dateTime;
+        // || start.date;
+        const endDate = end.dateTime;
+        // || end.date ;
+        return isSameHour(startDate, hour) && isSameDay(endDate, currentDay);
+      });
+
+      if (currentDayEvents.length) {
+        return currentDayEvents.map((event, i) => {
+          let { summary, start, end } = event;
+          let startDate = start.dateTime;
+          // || start.date;
+          const endDate = end.dateTime;
+          // || end.date ;
+          let eventHeight = getHeightOfEvent(startDate, endDate);
+          let startPosition = (getTheMinutes(startDate) / 60) * 100;
           return (
-            <div className="timeslot events">
+            <div className="timeslot events" key={i}>
               <div
                 style={{
                   height: eventHeight + 'px',
@@ -87,32 +80,24 @@ const Content = (props) => {
                   width: '100%',
                   top: startPosition,
                   backgroundColor: 'blue',
+                  color: 'white',
                 }}
               >
-                {event.summary}
+                {summary + ' time=='}
               </div>
             </div>
           );
         });
       }
-      return <div className="timeslot events"> what?</div>;
-      // }
+
+      return (
+        <div className="timeslot events" key={hour}>
+          {' '}
+          what?
+        </div>
+      );
     });
   };
-
-  // const displayEvent = () => {
-  //   console.log('ttt', selectedEvents);
-  //   return selectedEvents.map((event) => {
-  //     const { summary, start, end } = event;
-  //     const startDate = start.date || start.dateTime;
-  //     const endDate = end.date || end.dateTime;
-
-  //     const dates = getWeekDates.map(date => {
-
-  //     })
-  //     <div>{summary + startDate + endDate}</div>;
-  //   });
-  // };
 
   return (
     <div className="calendar">
