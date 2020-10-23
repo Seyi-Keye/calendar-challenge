@@ -21,7 +21,9 @@ const Sidebar = (props) => {
               >
                 <div
                   className="calendar-color"
-                  style={{ backgroundColor: calendar.backgroundColor }}
+                  style={{
+                    backgroundColor: calendar.backgroundColor,
+                  }}
                 ></div>
                 {calendar.summary}
               </div>

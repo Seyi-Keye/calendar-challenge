@@ -10,6 +10,15 @@
       "etag": "3206432205168000",
       "id": "17jahk74u2r79ih35in4nv81ft",
       "visibility": "public"
+    }, {
+      "description": "Managing conflict",
+      "summary": "Soro",
+      "status": "confirmed",
+      "start": {"dateTime": "2020-10-21T16:30:00+01:00", "date": "2020-10-29"},
+      "end": {"dateTime": "2020-10-21T17:30:00+01:00", "date": "2020-10-29"},
+      "etag": "3206432205168000",
+      "id": "17jahk74u2r79ih35in4nv81ft",
+      "visibility": "public"
     }]
   },
   "calendars": {
@@ -59,5 +68,4 @@
     ]
   }
 }
-  
   
