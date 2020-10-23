@@ -1,4 +1,4 @@
-import { differenceInMinutes, eachDayOfInterval, endOfWeek, getHours, getMinutes, startOfWeek } from 'date-fns'
+import { differenceInMinutes, eachDayOfInterval, endOfWeek, getDate, getHours, getMinutes, startOfWeek } from 'date-fns'
 
 export const getWeekDates = () => {
   let startOf = startOfWeek(new Date());
@@ -14,6 +14,7 @@ export const getThisYear = (date) => date.getUTCFullYear();
 export const getTheHour = (date) => getHours(new Date(date));
 export const getDifferenceInMinutes = (startTime, endTime) => differenceInMinutes(new Date(startTime), new Date(endTime));
 export const getTheMinutes = (date) => getMinutes(new Date(date));
+export const getDateToday = () => getDate(new Date());
 
 export const isSameDay = (day1, day2) => getDay(new Date(day1)) === getDay(new Date(day2));
 export const isSameHour = (hour1, hour2) => getTheHour(hour1) === hour2;

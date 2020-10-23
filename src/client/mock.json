@@ -10,18 +10,94 @@
       "etag": "3206432205168000",
       "id": "17jahk74u2r79ih35in4nv81ft",
       "visibility": "public",
-      "category": "aromokeyes2@gmail.com"
-    }, {
-      "description": "Managing conflict",
-      "summary": "Soro",
+      "category": "aromokeyes2@gmail.com",
+      "backgroundColor": "#9a9cff"
+    },
+    {
+      "description": "A conversation",
+      "summary": "achievement",
       "status": "confirmed",
       "start": {"dateTime": "2020-10-21T16:30:00+01:00", "date": "2020-10-29"},
       "end": {"dateTime": "2020-10-21T17:30:00+01:00", "date": "2020-10-29"},
       "etag": "3206432205168000",
       "id": "17jahk74u2r79ih35in4nv81ft",
       "visibility": "public",
-      "category": "aromokeyes2@gmail.com"
-    }]
+      "category": "aromokeyes2@gmail.com",
+      "backgroundColor": "#16a765"
+    },
+    {
+      "description": "A conversation",
+      "summary": "stupid",
+      "status": "confirmed",
+      "start": {"dateTime": "2020-10-21T16:30:00+01:00", "date": "2020-10-29"},
+      "end": {"dateTime": "2020-10-21T17:30:00+01:00", "date": "2020-10-29"},
+      "etag": "3206432205168000",
+      "id": "17jahk74u2r79ih35in4nv81ft",
+      "visibility": "public",
+      "category": "aromokeyes2@gmail.com",
+      "backgroundColor": "#92e1c0"
+    },
+    {
+      "description": "A conversation",
+      "summary": "Soro soke gen",
+      "status": "confirmed",
+      "start": {"dateTime": "2020-10-18T16:30:00+01:00", "date": "2020-10-29"},
+      "end": {"dateTime": "2020-10-18T17:30:00+01:00", "date": "2020-10-29"},
+      "etag": "3206432205168000",
+      "id": "17jahk74u2r79ih35in4nv81ft",
+      "visibility": "public",
+      "category": "aromokeyes2@gmail.com",
+      "backgroundColor": "#16a765"
+    },
+    {
+      "description": "A conversation",
+      "summary": "Soro soke gen",
+      "status": "confirmed",
+      "start": {"dateTime": "2020-10-21T17:30:00+01:00", "date": "2020-10-29"},
+      "end": {"dateTime": "2020-10-21T19:30:00+01:00", "date": "2020-10-29"},
+      "etag": "3206432205168000",
+      "id": "17jahk74u2r79ih35in4nv81ft",
+      "visibility": "public",
+      "category": "aromokeyes2@gmail.com",
+      "backgroundColor": "#16a765"
+    },
+    {
+      "description": "Exactly",
+      "summary": "Exactly",
+      "status": "confirmed",
+      "start": {"dateTime": "2020-10-22T22:00:00+01:00", "date": "2020-10-29"},
+      "end": {"dateTime": "2020-10-22T23:00:00+01:00", "date": "2020-10-29"},
+      "etag": "3206432205168000",
+      "id": "17jahk74u2r79ih35in4nv81ft",
+      "visibility": "public",
+      "category": "aromokeyes2@gmail.com",
+      "backgroundColor": "#92e1c0"
+    },
+    {
+      "description": "What",
+      "summary": "Guess",
+      "status": "confirmed",
+      "start": {"dateTime": "2020-10-21T17:00:00+01:00", "date": "2020-10-29"},
+      "end": {"dateTime": "2020-10-21T18:00:00+01:00", "date": "2020-10-29"},
+      "etag": "3206432205168000",
+      "id": "17jahk74u2r79ih35in4nv81ft",
+      "visibility": "public",
+      "category": "aromokeyes2@gmail.com",
+      "backgroundColor": "#92e1c0"
+    },
+    {
+      "description": "What",
+      "summary": "Guess",
+      "status": "confirmed",
+      "start": {"dateTime": "2020-10-21T23:00:00+01:00", "date": "2020-10-29"},
+      "end": {"dateTime": "2020-10-21T24:00:00+01:00", "date": "2020-10-29"},
+      "etag": "3206432205168000",
+      "id": "17jahk74u2r79ih35in4nv81ft",
+      "visibility": "public",
+      "category": "aromokeyes2@gmail.com",
+      "backgroundColor": "#92e1c0"
+    }
+  ]
   },
   "calendars": {
     "etag": "p338flpdirn1uo0g",

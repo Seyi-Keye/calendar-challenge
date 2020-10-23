@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  getDateToday,
   getDay,
   getDifferenceInMinutes,
   getTheMinutes,
@@ -29,9 +30,11 @@ const Content = (props) => {
     );
 
   const timeConverter = () =>
-    range(0, 24, 1).map((x) => {
+    range(-1, 24, 1).map((x) => {
       let time = null;
-      if (x === 0) {
+      if (x == -1) {
+        time = '';
+      } else if (x === 0) {
         time = '12 AM';
       } else if (x < 12) {
         time = `${x} AM`;
@@ -39,14 +42,14 @@ const Content = (props) => {
         time = `${x - 12} PM`;
       }
       return (
-        <div className="timeslot events" key={x}>
+        <div className="time" key={x}>
           {time}
         </div>
       );
     });
 
   const getHeightOfEvent = (startTime, endTime) => {
-    const height = getDifferenceInMinutes(startTime, endTime);
+    const height = getDifferenceInMinutes(endTime, startTime);
     return (height / 60) * 100;
   };
 
@@ -63,35 +66,44 @@ const Content = (props) => {
       });
 
       if (currentDayEvents.length) {
-        return currentDayEvents.map((event, i) => {
-          let { summary, start, end } = event;
-          let startDate = start.dateTime;
-          // || start.date;
-          const endDate = end.dateTime;
-          // || end.date ;
-          let eventHeight = getHeightOfEvent(startDate, endDate);
-          let startPosition = (getTheMinutes(startDate) / 60) * 100;
-          return (
-            <div className="timeslot events" key={i}>
-              <div
-                style={{
-                  height: eventHeight + 'px',
-                  position: 'absolute',
-                  width: '100%',
-                  top: startPosition,
-                  backgroundColor: 'blue',
-                  color: 'white',
-                }}
-              >
-                {summary + ' time=='}
-              </div>
-            </div>
-          );
-        });
+        return (
+          <div className="timeslot" key={hour}>
+            {currentDayEvents.map((event, i) => {
+              let { summary, start, end, backgroundColor } = event;
+              let startDate = start.dateTime;
+              // || start.date;
+              const endDate = end.dateTime;
+              // || end.date ;
+              let eventHeight = getHeightOfEvent(startDate, endDate);
+              let startPosition = (getTheMinutes(startDate) / 60) * 100;
+              let width = (1 / currentDayEvents.length) * 90;
+              let display = width !== 100 ? 'inline' : 'block';
+              return (
+                <div
+                  key={i}
+                  style={{
+                    height: eventHeight,
+                    display,
+                    position: 'absolute',
+                    width: width + '%',
+                    top: startPosition,
+                    left: i * width + '%',
+                    backgroundColor: backgroundColor,
+                    color: 'white',
+                    zIndex: 99,
+                    borderRadius: '5px',
+                  }}
+                >
+                  {summary + ' time=='}
+                </div>
+              );
+            })}
+          </div>
+        );
       }
 
       return (
-        <div className="timeslot events" key={hour}>
+        <div className="timeslot" key={hour}>
           {' '}
           what?
         </div>
@@ -99,23 +111,25 @@ const Content = (props) => {
     });
   };
 
+  const currentDate = (i) => {
+    if (getDay(getWeek[i]) === getDateToday()) {
+      return <div className="active">{getDay(getWeek[i])}</div>;
+    }
+    return <div>{getDay(getWeek[i])}</div>;
+  };
+
   return (
     <div className="calendar">
-      <div className="weekdays with-text">
-        {getWeek.map((weekday, i) => {
-          return (
-            <div className="weekday" key={weekday}>
-              {getDay(weekday)} {weekdays[i]}
-            </div>
-          );
-        })}
-      </div>
       <div className="layout">
         <div>{timeConverter()}</div>
         <div className="weekdays">
           {weekdays.map((weekday, i) => {
             return (
               <div className="weekday" key={weekday}>
+                <div className="timeslot" key={weekday}>
+                  {currentDate(i)}
+                  <div> {weekday}</div>
+                </div>
                 <div>{eventConverter(selectedEvents, getWeek[i])}</div>
               </div>
             );
