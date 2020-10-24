@@ -15,15 +15,15 @@ export const getTheHour = (date) => getHours(new Date(date));
 export const getDifferenceInMinutes = (startTime, endTime) => differenceInMinutes(new Date(startTime), new Date(endTime));
 export const getTheMinutes = (date) => getMinutes(new Date(date));
 export const getDateToday = () => getDate(new Date());
-export const get12hourFormat = (x, m='') => {
+export const get12hourFormat = (x) => {
     if (x == -1) {
       return '';
     } else if (x === 0) {
-      return `12${m} AM`;
+      return '12 AM';
     } else if (x < 12) {
-      return `${x}${m} AM`;
+      return `${x} AM`;
     } else {
-      return `${x - 12}${m} PM`;
+      return `${x - 12} PM`;
     }
   };
 
