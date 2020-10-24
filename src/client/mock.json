@@ -34,14 +34,14 @@
       "etag": "3206432205168000",
       "id": "17jahk74u2r79ih35in4nv81ft",
       "visibility": "public",
-      "category": "aromokeyes2@gmail.com",
+      "category": "Holidays in Nigeria",
       "backgroundColor": "#92e1c0"
     },
     {
       "description": "A conversation",
       "summary": "Soro soke gen",
       "status": "confirmed",
-      "start": {"dateTime": "2020-10-18T16:30:00+01:00", "date": "2020-10-29"},
+      "start": {"dateTime": "2020-10-18T16:03:00+01:00", "date": "2020-10-29"},
       "end": {"dateTime": "2020-10-18T17:30:00+01:00", "date": "2020-10-29"},
       "etag": "3206432205168000",
       "id": "17jahk74u2r79ih35in4nv81ft",
@@ -58,7 +58,7 @@
       "etag": "3206432205168000",
       "id": "17jahk74u2r79ih35in4nv81ft",
       "visibility": "public",
-      "category": "aromokeyes2@gmail.com",
+      "category": "Holidays in Nigeria",
       "backgroundColor": "#16a765"
     },
     {
@@ -82,7 +82,7 @@
       "etag": "3206432205168000",
       "id": "17jahk74u2r79ih35in4nv81ft",
       "visibility": "public",
-      "category": "aromokeyes2@gmail.com",
+      "category": "Christian Holidays",
       "backgroundColor": "#92e1c0"
     },
     {
@@ -94,7 +94,7 @@
       "etag": "3206432205168000",
       "id": "17jahk74u2r79ih35in4nv81ft",
       "visibility": "public",
-      "category": "aromokeyes2@gmail.com",
+      "category": "Birthdays",
       "backgroundColor": "#92e1c0"
     }
   ]

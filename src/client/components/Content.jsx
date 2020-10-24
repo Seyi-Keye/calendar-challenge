@@ -3,6 +3,8 @@ import {
   getDateToday,
   getDay,
   getDifferenceInMinutes,
+  get12hourFormat,
+  getTheHour,
   getTheMinutes,
   getWeekDates,
   isSameDay,
@@ -10,7 +12,7 @@ import {
 } from '../date.js';
 
 const Content = (props) => {
-  const { selectedEvents } = props;
+  const { selectedEvents, selectedCalendarCategories } = props;
 
   const getWeek = getWeekDates();
   const weekdays = [
@@ -31,16 +33,8 @@ const Content = (props) => {
 
   const timeConverter = () =>
     range(-1, 24, 1).map((x) => {
-      let time = null;
-      if (x == -1) {
-        time = '';
-      } else if (x === 0) {
-        time = '12 AM';
-      } else if (x < 12) {
-        time = `${x} AM`;
-      } else {
-        time = `${x - 12} PM`;
-      }
+      let time = get12hourFormat(x);
+
       return (
         <div className="time" key={x}>
           {time}
@@ -57,12 +51,15 @@ const Content = (props) => {
   const eventConverter = (events, currentDay) => {
     return range(0, 24, 1).map((hour) => {
       let currentDayEvents = events.filter((event) => {
-        let { start, end } = event;
-        let startDate = start.dateTime;
-        // || start.date;
-        const endDate = end.dateTime;
-        // || end.date ;
-        return isSameHour(startDate, hour) && isSameDay(endDate, currentDay);
+        let { end, start, category } = event;
+        let startDate = start.dateTime || start.date;
+        const endDate = end.dateTime || end.date;
+        let selectedCalendar = selectedCalendarCategories.includes(category);
+        return (
+          selectedCalendar &&
+          isSameHour(startDate, hour) &&
+          isSameDay(endDate, currentDay)
+        );
       });
 
       if (currentDayEvents.length) {
@@ -70,14 +67,16 @@ const Content = (props) => {
           <div className="timeslot" key={hour}>
             {currentDayEvents.map((event, i) => {
               let { summary, start, end, backgroundColor } = event;
-              let startDate = start.dateTime;
-              // || start.date;
-              const endDate = end.dateTime;
-              // || end.date ;
+              let startDate = start.dateTime || start.date;
+              const endDate = end.dateTime || end.date;
               let eventHeight = getHeightOfEvent(startDate, endDate);
               let startPosition = (getTheMinutes(startDate) / 60) * 100;
               let width = (1 / currentDayEvents.length) * 90;
               let display = width !== 100 ? 'inline' : 'block';
+              let startTime =
+                getTheHour(startDate) + ':' + getTheMinutes(startDate);
+              let endTime = getTheHour(endDate) + ':' + getTheMinutes(endDate);
+
               return (
                 <div
                   key={i}
@@ -94,7 +93,21 @@ const Content = (props) => {
                     borderRadius: '5px',
                   }}
                 >
-                  {summary + ' time=='}
+                  <p>{summary}</p>{' '}
+                  <p>
+                    {get12hourFormat(
+                      getTheHour(startDate),
+                      ':' +
+                        ('0' + getTheMinutes(startDate).toString()).slice(-2)
+                    ) +
+                      ' - ' +
+                      get12hourFormat(
+                        getTheHour(endDate),
+
+                        ':' +
+                          ('0' + getTheMinutes(endDate).toString()).slice(-2)
+                      )}
+                  </p>
                 </div>
               );
             })}
@@ -102,12 +115,7 @@ const Content = (props) => {
         );
       }
 
-      return (
-        <div className="timeslot" key={hour}>
-          {' '}
-          what?
-        </div>
-      );
+      return <div className="timeslot" key={hour}></div>;
     });
   };
 

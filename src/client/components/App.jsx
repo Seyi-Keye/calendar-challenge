@@ -6,18 +6,35 @@ import mock from '../mock.json';
 import '../calendar.scss';
 
 const Layout = () => {
-  // const [calendars, setCalendars] = useState({})
+  const [selectedCalendarCategories, setSelectedCalendarCategories] = useState([
+    'aromokeyes2@gmail.com',
+    'Christian Holidays',
+  ]);
   const { calendars, calenderEvents } = mock;
   const { events } = calenderEvents;
   const selectedEvents = events;
-  // const selectedCalendarIds = ['calendarId'];
+
+  const toggleSelectedCalendar = (summary) => {
+    return selectedCalendarCategories.includes(summary)
+      ? setSelectedCalendarCategories(
+          selectedCalendarCategories.filter((category) => category !== summary)
+        )
+      : setSelectedCalendarCategories([...selectedCalendarCategories, summary]);
+  };
 
   return (
     <div className="container">
       <Header />
       <div className="page-layout">
-        <Sidebar calendars={calendars.items} />
-        <Content selectedEvents={selectedEvents} />
+        <Sidebar
+          calendars={calendars.items}
+          selectedCalendarCategories={selectedCalendarCategories}
+          toggleSelectedCalendar={toggleSelectedCalendar}
+        />
+        <Content
+          selectedEvents={selectedEvents}
+          selectedCalendarCategories={selectedCalendarCategories}
+        />
       </div>
     </div>
   );

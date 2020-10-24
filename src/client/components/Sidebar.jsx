@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
 const Sidebar = (props) => {
-  const [toggleSelected, setToggleSelected] = useState(false);
+  const { selectedCalendarCategories, toggleSelectedCalendar } = props;
 
-  // const handleCalendarSelection = (toggleSelected) =>
-  //   setToggleSelected(!toggleSelected);
+  const selectedClass = (summary) =>
+    selectedCalendarCategories.includes(summary) ? 'card selected' : 'card';
 
   return (
     <div className="calendars">
@@ -14,10 +14,8 @@ const Sidebar = (props) => {
           return (
             <li key={calendar.id}>
               <div
-                className={toggleSelected ? 'card selected' : 'card'}
-                onClick={() => {
-                  setToggleSelected(!toggleSelected);
-                }}
+                className={selectedClass(calendar.summary)}
+                onClick={() => toggleSelectedCalendar(calendar.summary)}
               >
                 <div
                   className="calendar-color"
