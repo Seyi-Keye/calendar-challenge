@@ -1,17 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const Sidebar = () => {
-  const mock = [{ title: 'Titi' }, { title: 'Tope' }, { title: 'Toyin' }];
+const Sidebar = (props) => {
+  const { selectedCalendarCategories, toggleSelectedCalendar } = props;
+
+  const selectedClass = (summary) =>
+    selectedCalendarCategories.includes(summary) ? 'card selected' : 'card';
+
   return (
     <div className="calendars">
       <p>CALENDARS</p>
       <ul>
-        {mock.map((calendar) => {
+        {props.calendars.map((calendar) => {
           return (
-            <li key={calendar.title}>
-              <div className="card selected">
-                <div className="calendar-color"></div>
-                {calendar.title}
+            <li key={calendar.id}>
+              <div
+                className={selectedClass(calendar.summary)}
+                onClick={() => toggleSelectedCalendar(calendar.summary)}
+              >
+                <div
+                  className="calendar-color"
+                  style={{
+                    backgroundColor: calendar.backgroundColor,
+                  }}
+                ></div>
+                {calendar.summary}
               </div>
             </li>
           );
