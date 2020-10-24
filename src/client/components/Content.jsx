@@ -95,18 +95,17 @@ const Content = (props) => {
                 >
                   <p>{summary}</p>{' '}
                   <p>
-                    {get12hourFormat(
-                      getTheHour(startDate),
-                      ':' +
-                        ('0' + getTheMinutes(startDate).toString()).slice(-2)
-                    ) +
+                    {new Date(startDate).toLocaleString('en-US', {
+                      hour: 'numeric',
+                      minute: 'numeric',
+                      hour12: true,
+                    }) +
                       ' - ' +
-                      get12hourFormat(
-                        getTheHour(endDate),
-
-                        ':' +
-                          ('0' + getTheMinutes(endDate).toString()).slice(-2)
-                      )}
+                      new Date(startDate).toLocaleString('en-US', {
+                        hour: 'numeric',
+                        minute: 'numeric',
+                        hour12: true,
+                      })}
                   </p>
                 </div>
               );
