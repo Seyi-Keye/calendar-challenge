@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Logout from './Logout';
 import { endOf, startOf } from '../date';
 import { DISCOVERY_DOCS, SCOPES } from '../constants';
 
@@ -160,7 +161,22 @@ const GoogleAuthCalendar = ({ setCalendars, setEvents, setCategories }) => {
     handleClientLoad({ setCalendars, setEvents, setIsSignedIn, setCategories });
   }, []);
 
-  return <div>WE are AFRICANS!!!</div>;
+  return (
+    <div>
+      {isSignedIn ? (
+        <Logout
+          handleSignoutClick={handleSignoutClick}
+          setCalendars={setCalendars}
+          setEvents={setEvents}
+          setCategories={setCategories}
+        />
+      ) : (
+        <div className="g-signin2" onClick={handleAuthClick}>
+          Login
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default GoogleAuthCalendar;
