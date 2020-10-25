@@ -11,7 +11,7 @@ import {
   isSameHour,
 } from '../date.js';
 
-const Content = (props) => {
+const CalendarEvents = (props) => {
   const { selectedEvents, selectedCalendarCategories } = props;
 
   const getWeek = getWeekDates();
@@ -54,7 +54,9 @@ const Content = (props) => {
         let { end, start, category } = event;
         let startDate = start.dateTime || start.date;
         const endDate = end.dateTime || end.date;
-        let selectedCalendar = selectedCalendarCategories.includes(category);
+        let selectedCalendar =
+          selectedCalendarCategories &&
+          selectedCalendarCategories.includes(category);
         return (
           selectedCalendar &&
           isSameHour(startDate, hour) &&
@@ -147,4 +149,4 @@ const Content = (props) => {
   );
 };
 
-export default Content;
+export default CalendarEvents;

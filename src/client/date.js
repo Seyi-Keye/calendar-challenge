@@ -1,8 +1,9 @@
 import { differenceInMinutes, eachDayOfInterval, endOfWeek, getDate, getHours, getMinutes, startOfWeek } from 'date-fns'
 
+export const startOf = startOfWeek(new Date());
+export const endOf = endOfWeek(new Date());
+
 export const getWeekDates = () => {
-  let startOf = startOfWeek(new Date());
-  let endOf = endOfWeek(new Date());
   let eachDay = eachDayOfInterval({ start: startOf, end: endOf });
   return eachDay;
 };
