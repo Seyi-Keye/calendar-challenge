@@ -4,14 +4,13 @@ import {
   getDay,
   getDifferenceInMinutes,
   get12hourFormat,
-  getTheHour,
   getTheMinutes,
   getWeekDates,
   isSameDay,
   isSameHour,
 } from '../date.js';
 
-const Content = (props) => {
+const CalendarEvents = (props) => {
   const { selectedEvents, selectedCalendarCategories } = props;
 
   const getWeek = getWeekDates();
@@ -54,7 +53,9 @@ const Content = (props) => {
         let { end, start, category } = event;
         let startDate = start.dateTime || start.date;
         const endDate = end.dateTime || end.date;
-        let selectedCalendar = selectedCalendarCategories.includes(category);
+        let selectedCalendar =
+          selectedCalendarCategories &&
+          selectedCalendarCategories.includes(category);
         return (
           selectedCalendar &&
           isSameHour(startDate, hour) &&
@@ -73,9 +74,6 @@ const Content = (props) => {
               let startPosition = (getTheMinutes(startDate) / 60) * 100;
               let width = (1 / currentDayEvents.length) * 90;
               let display = width !== 100 ? 'inline' : 'block';
-              let startTime =
-                getTheHour(startDate) + ':' + getTheMinutes(startDate);
-              let endTime = getTheHour(endDate) + ':' + getTheMinutes(endDate);
 
               return (
                 <div
@@ -101,7 +99,7 @@ const Content = (props) => {
                       hour12: true,
                     }) +
                       ' - ' +
-                      new Date(startDate).toLocaleString('en-US', {
+                      new Date(endDate).toLocaleString('en-US', {
                         hour: 'numeric',
                         minute: 'numeric',
                         hour12: true,
@@ -147,4 +145,4 @@ const Content = (props) => {
   );
 };
 
-export default Content;
+export default CalendarEvents;

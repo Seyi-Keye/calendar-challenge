@@ -1,7 +1,7 @@
 import React from 'react';
 import { getThisMonth, getThisYear } from '../date.js';
 
-const Header = (props) => {
+const CalendarHeader = (props) => {
   const { headerText } = props;
   const months = [
     'January',
@@ -29,4 +29,4 @@ const Header = (props) => {
   );
 };
 
-export default Header;
+export default CalendarHeader;

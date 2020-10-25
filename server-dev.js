@@ -6,8 +6,11 @@ import path from 'path';
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
-
+import dotenv from 'dotenv';
 import config from './webpack.config.dev';
+
+
+dotenv.config();
 
 const app = express();
 const compiler = webpack(config);

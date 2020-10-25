@@ -1,39 +1,31 @@
-import React, { useState } from 'react';
-import Header from './Header';
-import Sidebar from './Sidebar';
-import Content from './Content';
-import mock from '../mock.json';
+import React, { useEffect, useState } from 'react';
+import CalendarHeader from './CalendarHeader';
+import Calendars from './Calendars';
+import CalendarEvents from './CalendarEvents';
+import GoogleAuthCalendar from './GoogleAuthCalendar';
 import '../calendar.scss';
 
-const Layout = () => {
-  const [selectedCalendarCategories, setSelectedCalendarCategories] = useState([
-    'aromokeyes2@gmail.com',
-    'Christian Holidays',
-  ]);
-  const { calendars, calenderEvents } = mock;
-  const { events } = calenderEvents;
-  const selectedEvents = events;
+const CalendarView = (props) => {
+  const { calendars, categories, events, setCategories } = props;
 
   const toggleSelectedCalendar = (summary) => {
-    return selectedCalendarCategories.includes(summary)
-      ? setSelectedCalendarCategories(
-          selectedCalendarCategories.filter((category) => category !== summary)
-        )
-      : setSelectedCalendarCategories([...selectedCalendarCategories, summary]);
+    return categories.includes(summary)
+      ? setCategories(categories.filter((category) => category !== summary))
+      : setCategories([...categories, summary]);
   };
 
   return (
     <div className="container">
-      <Header />
+      <CalendarHeader />
       <div className="page-layout">
-        <Sidebar
-          calendars={calendars.items}
-          selectedCalendarCategories={selectedCalendarCategories}
+        <Calendars
+          calendars={calendars}
+          selectedCalendarCategories={categories}
           toggleSelectedCalendar={toggleSelectedCalendar}
         />
-        <Content
-          selectedEvents={selectedEvents}
-          selectedCalendarCategories={selectedCalendarCategories}
+        <CalendarEvents
+          selectedEvents={events}
+          selectedCalendarCategories={categories}
         />
       </div>
     </div>
@@ -41,7 +33,34 @@ const Layout = () => {
 };
 
 const App = () => {
-  return <Layout />;
+  const [calendars, setCalendars] = useState([]);
+  const [events, setEvents] = useState([]);
+  const [categories, setCategories] = useState([]);
+
+  // useEffect(() => {
+  //   setCalendarApiResponse(handleClientLoad());
+
+  //   return () => setCalendarApiResponse(null);
+  // }, [calendarApiResponse]);
+
+  return (
+    <div>
+      <GoogleAuthCalendar
+        setCalendars={setCalendars}
+        setEvents={setEvents}
+        setCategories={setCategories}
+      />
+      {calendars && (
+        <CalendarView
+          calendars={calendars}
+          events={events}
+          categories={categories}
+          setCategories={setCategories}
+        />
+      )}
+      ;
+    </div>
+  );
 };
 
 export default App;
