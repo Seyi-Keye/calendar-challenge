@@ -95,28 +95,24 @@ function handleSignoutClick(event) {
  * the authorized user's calendar. If no events are found an
  * appropriate message is printed.
  */
-// function getCurrentWeekEvents(category, calendarId, color, events) {
-//   window.gapi.client.calendar.events
-//     .list({
-//       calendarId,
-//       timeMin: new Date(startOf).toISOString(),
-//       timeMax: new Date(endOf).toISOString(),
-//       showDeleted: false,
-//       singleEvents: true,
-//       orderBy: 'startTime',
-//     })
-//     .then(function (response) {
-//       let weekEvents = response.result.items;
+function getCurrentWeekEvents(calendar, lastItem, callback) {
+  const { id } = calendar;
 
-//       if (weekEvents.length > 0) {
-//         for (let i = 0; i < weekEvents.length; i++) {
-//           let { summary, id, start, end } = weekEvents[i];
-//           events.push({ summary, id, start, end, category, color });
-//         }
-//         return events;
-//       }
-//     });
-// }
+  window.gapi.client.calendar.events
+    .list({
+      calendarId: id,
+      timeMin: new Date(startOf).toISOString(),
+      timeMax: new Date(endOf).toISOString(),
+      showDeleted: false,
+      singleEvents: true,
+      orderBy: 'startTime',
+    })
+    .then(function (response) {
+      let weekEvents = response.result.items;
+
+      callback(weekEvents, lastItem, calendar);
+    });
+}
 
 /*
   Print Calendars
@@ -134,22 +130,42 @@ const getUserCalendarList = (setCalendars, setEvents, setCategories) => {
       let events = [];
       let categories = [];
 
-      if (calendarsResponse.length > 0) {
-        for (let i = 0; i < calendarsResponse.length; i++) {
+      let callback = (newEvents, lastItem, calendar) => {
+        let { summary, backgroundColor } = calendar;
+        if (newEvents.length > 0) {
+          for (let i = 0; i < newEvents.length; i++) {
+            let { summary: eventSummary, id: eventId, start, end } = newEvents[
+              i
+            ];
+            events.push({
+              summary: eventSummary,
+              id: eventId,
+              start,
+              end,
+              category: summary,
+              backgroundColor,
+            });
+          }
+        }
+
+        if (lastItem) {
+          setEvents(events);
+        }
+      };
+
+      const count = calendarsResponse.length;
+      if (count > 0) {
+        for (let i = 0; i < count; i++) {
           const { backgroundColor, id, summary } = calendarsResponse[i];
           calendars.push({ backgroundColor, id, summary });
-          categories.push(summary);
 
-          // let event = getCurrentWeekEvents(
-          //   summary,
-          //   id,
-          //   backgroundColor,
-          //   events
-          // );
-          // events.push(event);
+          const lastItem = i + 1 === count;
+          getCurrentWeekEvents(calendarsResponse[i], lastItem, callback);
         }
-        setCalendars(calendars), setCategories(categories);
-        // setEvents(events);
+
+        categories.push(calendars[0].summary);
+        setCalendars(calendars);
+        setCategories(categories);
       }
     });
 };
@@ -171,9 +187,7 @@ const GoogleAuthCalendar = ({ setCalendars, setEvents, setCategories }) => {
           setCategories={setCategories}
         />
       ) : (
-        <div className="g-signin2" onClick={handleAuthClick}>
-          Login
-        </div>
+        <button onClick={handleAuthClick}>Login</button>
       )}
     </div>
   );

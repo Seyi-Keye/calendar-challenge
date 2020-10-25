@@ -3,13 +3,10 @@ import CalendarHeader from './CalendarHeader';
 import Calendars from './Calendars';
 import CalendarEvents from './CalendarEvents';
 import GoogleAuthCalendar from './GoogleAuthCalendar';
-import mock from '../mock.json';
 import '../calendar.scss';
 
 const CalendarView = (props) => {
-  const { calenderEvents } = mock;
-  const { calendars, categories, setCategories } = props;
-  const { events } = calenderEvents;
+  const { calendars, categories, events, setCategories } = props;
 
   const toggleSelectedCalendar = (summary) => {
     return categories.includes(summary)
@@ -39,8 +36,6 @@ const App = () => {
   const [calendars, setCalendars] = useState([]);
   const [events, setEvents] = useState([]);
   const [categories, setCategories] = useState([]);
-
-  console.log('state', calendars, events);
 
   // useEffect(() => {
   //   setCalendarApiResponse(handleClientLoad());
