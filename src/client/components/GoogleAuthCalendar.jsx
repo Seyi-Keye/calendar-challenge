@@ -4,8 +4,8 @@ import { endOf, startOf } from '../date';
 import { DISCOVERY_DOCS, SCOPES } from '../constants';
 
 // Client ID and API key from the Developer Console
-let CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
-let API_KEY = process.env.API_KEY;
+const CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+const API_KEY = process.env.API_KEY;
 
 /**
  *  On load, called to load the auth2 library and API client library.

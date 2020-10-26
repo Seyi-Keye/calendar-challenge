@@ -1,4 +1,4 @@
-import { differenceInMinutes, eachDayOfInterval, endOfWeek, getDate, getHours, getMinutes, startOfWeek } from 'date-fns'
+import { differenceInMinutes, eachDayOfInterval, endOfWeek, getDate, getHours, getMinutes, startOfWeek, addHours } from 'date-fns'
 
 export const startOf = startOfWeek(new Date());
 export const endOf = endOfWeek(new Date());
@@ -17,7 +17,7 @@ export const getDifferenceInMinutes = (startTime, endTime) => differenceInMinute
 export const getTheMinutes = (date) => getMinutes(new Date(date));
 export const getDateToday = () => getDate(new Date());
 export const get12hourFormat = (x) => {
-    if (x == -1) {
+    if (x === -1) {
       return '';
     } else if (x === 0) {
       return '12 AM';
@@ -30,3 +30,4 @@ export const get12hourFormat = (x) => {
 
 export const isSameDay = (day1, day2) => getDay(new Date(day1)) === getDay(new Date(day2));
 export const isSameHour = (hour1, hour2) => getTheHour(hour1) === hour2;
+export const addSomeHours = ()=> addHours(new Date(), 1);
