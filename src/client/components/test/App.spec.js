@@ -1,26 +1,22 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import App from '../App';
-import mock from '../../mock.json';
-
-const categories = [events[0].category];
-const events = mock.calenderEvents.events;
-const calendars = mock.calendars.items;
-
-const initialState = {
-  calendars,
-  events,
-  categories
-};
+import App, { CalendarView } from '../App';
 
 describe('<App />', () => {
-  it('renders <GoogleAuthCalendar /> component', () => {
+  it('renders <GoogleAuthCalendar />  and <CalendarView /> components', () => {
     const wrapper = shallow(<App />);
 
-    console.log(wrapper.text(), 'kkk')
     expect(wrapper.find('GoogleAuthCalendar').length).toEqual(1);
+    expect(wrapper.find('CalendarView').length).toEqual(1);
+  });
+});
 
-    // wrapper.find('button').simulate('click', event);
-    // expect(event.preventDefault).toBeCalled();
+describe('<CalendarView />', () => {
+  it('renders 3 components', () => {
+    const wrapper = shallow(<CalendarView />);
+
+    expect(wrapper.find('.container').length).toEqual(1);
+    expect(wrapper.find('CalendarHeader').length).toEqual(1);
+    expect(wrapper.find('CalendarEvents').length).toEqual(1);
   });
 });

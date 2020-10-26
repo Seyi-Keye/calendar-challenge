@@ -5,7 +5,7 @@ import CalendarEvents from './CalendarEvents';
 import GoogleAuthCalendar from './GoogleAuthCalendar';
 import '../calendar.scss';
 
-const CalendarView = (props) => {
+export const CalendarView = (props) => {
   const { calendars, categories, events, setCategories } = props;
 
   const toggleSelectedCalendar = (summary) => {
