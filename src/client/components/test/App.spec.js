@@ -17,6 +17,7 @@ describe('<App />', () => {
   it('renders <GoogleAuthCalendar /> component', () => {
     const wrapper = shallow(<App />);
 
+    console.log(wrapper.text(), 'kkk')
     expect(wrapper.find('GoogleAuthCalendar').length).toEqual(1);
 
     // wrapper.find('button').simulate('click', event);
