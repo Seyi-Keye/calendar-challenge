@@ -23,6 +23,12 @@ const CalendarEvents = (props) => {
     'Friday',
     'Saturday',
   ];
+  const hourTimer = (date) =>
+    new Date(date).toLocaleString('en-US', {
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: true,
+    });
 
   const range = (start, stop, step) =>
     Array.from(
@@ -91,19 +97,9 @@ const CalendarEvents = (props) => {
                     borderRadius: '5px',
                   }}
                 >
-                  <p>{summary}</p>{' '}
-                  <p>
-                    {new Date(startDate).toLocaleString('en-US', {
-                      hour: 'numeric',
-                      minute: 'numeric',
-                      hour12: true,
-                    }) +
-                      ' - ' +
-                      new Date(endDate).toLocaleString('en-US', {
-                        hour: 'numeric',
-                        minute: 'numeric',
-                        hour12: true,
-                      })}
+                  <p className="eventSummary">{summary}</p>{' '}
+                  <p className="eventTime">
+                    {hourTimer(startDate) + ' - ' + hourTimer(endDate)}
                   </p>
                 </div>
               );
