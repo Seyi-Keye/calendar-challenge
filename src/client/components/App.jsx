@@ -34,10 +34,10 @@ export const CalendarView = (props) => {
 };
 
 CalendarView.propTypes = {
-  calendars: PropTypes.array.isRequired,
-  categories: PropTypes.array.isRequired,
-  events: PropTypes.array.isRequired,
-  setCategories: PropTypes.func.isRequired,
+  calendars: PropTypes.array,
+  categories: PropTypes.array,
+  events: PropTypes.array,
+  setCategories: PropTypes.func,
 };
 
 const App = () => {

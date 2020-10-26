@@ -144,7 +144,7 @@ const CalendarEvents = (props) => {
 };
 
 CalendarEvents.propTypes = {
-  selectedEvents: PropTypes.array.isRequired,
+  selectedEvents: PropTypes.array,
   selectedCalendarCategories: PropTypes.array,
 };
 

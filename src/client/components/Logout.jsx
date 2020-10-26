@@ -21,9 +21,9 @@ const Logout = ({
 };
 
 Logout.propTypes = {
-  handleSignoutClick: PropTypesfunc.isRequired,
-  setCalendars: PropTypesfunc.isRequired,
-  setEvents: PropTypesfunc.isRequired,
+  handleSignoutClick: PropTypes.func.isRequired,
+  setCalendars: PropTypes.func.isRequired,
+  setEvents: PropTypes.func.isRequired,
   setCategories: PropTypes.func.isRequired,
 };
 
