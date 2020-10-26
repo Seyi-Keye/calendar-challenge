@@ -92,9 +92,7 @@ function handleSignoutClick(event) {
 }
 
 /**
- * Print the summary and start datetime/date of the next ten events in
- * the authorized user's calendar. If no events are found an
- * appropriate message is printed.
+ * Fetch and build each events for all calendars
  */
 function getCurrentWeekEvents(calendar, lastItem, callback) {
   const { id } = calendar;
@@ -115,9 +113,10 @@ function getCurrentWeekEvents(calendar, lastItem, callback) {
     });
 }
 
-/*
-  Print Calendars
-*/
+/**
+ * Fetch user calendars, categories and associated events
+ * set the states of the app
+ */
 const getUserCalendarList = (setCalendars, setEvents, setCategories) => {
   window.gapi.client.calendar.calendarList
     .list({
