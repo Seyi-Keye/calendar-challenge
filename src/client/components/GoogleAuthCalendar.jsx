@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import Logout from './Logout';
 import { endOf, startOf } from '../date';
 import { DISCOVERY_DOCS, SCOPES } from '../constants';
@@ -191,6 +192,12 @@ const GoogleAuthCalendar = ({ setCalendars, setEvents, setCategories }) => {
       )}
     </div>
   );
+};
+
+GoogleAuthCalendar.propTypes = {
+  setCalendars: PropTypes.func.isRequired,
+  setEvents: PropTypes.func.isRequired,
+  setCategories: PropTypes.func,
 };
 
 export default GoogleAuthCalendar;

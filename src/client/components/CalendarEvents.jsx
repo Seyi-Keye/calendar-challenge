@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   getDateToday,
   getDay,
@@ -23,6 +24,7 @@ const CalendarEvents = (props) => {
     'Friday',
     'Saturday',
   ];
+
   const hourTimer = (date) =>
     new Date(date).toLocaleString('en-US', {
       hour: 'numeric',
@@ -139,6 +141,11 @@ const CalendarEvents = (props) => {
       </div>
     </div>
   );
+};
+
+CalendarEvents.propTypes = {
+  selectedEvents: PropTypes.array.isRequired,
+  selectedCalendarCategories: PropTypes.array,
 };
 
 export default CalendarEvents;

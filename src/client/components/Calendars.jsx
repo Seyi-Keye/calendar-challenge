@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Calendars = (props) => {
   const {
@@ -36,6 +37,12 @@ const Calendars = (props) => {
       </ul>
     </div>
   );
+};
+
+Calendars.propTypes = {
+  selectedEvents: PropTypes.array.isRequired,
+  selectedCalendarCategories: PropTypes.array.isRequired,
+  calendars: PropTypes.array,
 };
 
 export default Calendars;

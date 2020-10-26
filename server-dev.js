@@ -5,6 +5,7 @@ import bodyParser from 'body-parser';
 import path from 'path';
 import webpack from 'webpack';
 import webpackHotMiddleware from 'webpack-hot-middleware';
+import webpackDevMiddleware from 'webpack-dev-middleware';
 import dotenv from 'dotenv';
 import config from './webpack.config.dev';
 
