@@ -17,7 +17,7 @@ export const getDifferenceInMinutes = (startTime, endTime) => differenceInMinute
 export const getTheMinutes = (date) => getMinutes(new Date(date));
 export const getDateToday = () => getDate(new Date());
 export const get12hourFormat = (x) => {
-    if (x == -1) {
+    if (x === -1) {
       return '';
     } else if (x === 0) {
       return '12 AM';

@@ -1,8 +1,7 @@
 import React from 'react';
 import { getThisMonth, getThisYear } from '../date.js';
 
-const CalendarHeader = (props) => {
-  const { headerText } = props;
+const CalendarHeader = () => {
   const months = [
     'January',
     'February',
@@ -24,7 +23,7 @@ const CalendarHeader = (props) => {
 
   return (
     <div className="header">
-      <p>{months[month] + ', ' + year}</p>
+      <p>{`${months[month]} ${year}`}</p>
     </div>
   );
 };
