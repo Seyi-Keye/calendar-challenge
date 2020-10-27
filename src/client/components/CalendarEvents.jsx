@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   getDateToday,
   getDay,
@@ -14,15 +15,11 @@ const CalendarEvents = (props) => {
   const { selectedEvents, selectedCalendarCategories } = props;
 
   const getWeek = getWeekDates();
-  const weekdays = [
-    'Sunday',
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
-  ];
+  const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+  /**
+   * Format time to 12 hours AM/PM
+   */
   const hourTimer = (date) =>
     new Date(date).toLocaleString('en-US', {
       hour: 'numeric',
@@ -31,11 +28,11 @@ const CalendarEvents = (props) => {
     });
 
   const range = (start, stop, step) =>
-    Array.from(
-      { length: (stop - start) / step + 1 },
-      (_, i) => start + i * step
-    );
+    Array.from({ length: (stop - start) / step + 1 }, (_, i) => start + i * step);
 
+  /**
+   * Display hourly time from 12AM to 11PM
+   */
   const timeConverter = () =>
     range(-1, 24, 1).map((x) => {
       let time = get12hourFormat(x);
@@ -47,12 +44,19 @@ const CalendarEvents = (props) => {
       );
     });
 
+  /**
+   * Calculate and return the height as duration of an event
+   * using 100px as height per 1hour slot
+   */
   const getHeightOfEvent = (startTime, endTime) => {
     const height = getDifferenceInMinutes(endTime, startTime);
     return (height / 60) * 100;
   };
 
-  /** */
+  /**
+   *  matches ea h event to the right timeslot and display
+   *  event with appropriate properties and style
+   */
   const eventConverter = (events, currentDay) => {
     return range(0, 24, 1).map((hour) => {
       let currentDayEvents = events.filter((event) => {
@@ -60,13 +64,8 @@ const CalendarEvents = (props) => {
         let startDate = start.dateTime || start.date;
         const endDate = end.dateTime || end.date;
         let selectedCalendar =
-          selectedCalendarCategories &&
-          selectedCalendarCategories.includes(category);
-        return (
-          selectedCalendar &&
-          isSameHour(startDate, hour) &&
-          isSameDay(endDate, currentDay)
-        );
+          selectedCalendarCategories && selectedCalendarCategories.includes(category);
+        return selectedCalendar && isSameHour(startDate, hour) && isSameDay(endDate, currentDay);
       });
 
       if (currentDayEvents.length) {
@@ -98,9 +97,7 @@ const CalendarEvents = (props) => {
                   }}
                 >
                   <p className="eventSummary">{summary}</p>{' '}
-                  <p className="eventTime">
-                    {hourTimer(startDate) + ' - ' + hourTimer(endDate)}
-                  </p>
+                  <p className="eventTime">{hourTimer(startDate) + ' - ' + hourTimer(endDate)}</p>
                 </div>
               );
             })}
@@ -112,6 +109,9 @@ const CalendarEvents = (props) => {
     });
   };
 
+  /**
+   * Display date and style current date as active
+   */
   const currentDate = (i) => {
     if (getDay(getWeek[i]) === getDateToday()) {
       return <div className="active">{getDay(getWeek[i])}</div>;
@@ -139,6 +139,11 @@ const CalendarEvents = (props) => {
       </div>
     </div>
   );
+};
+
+CalendarEvents.propTypes = {
+  selectedEvents: PropTypes.array,
+  selectedCalendarCategories: PropTypes.array,
 };
 
 export default CalendarEvents;

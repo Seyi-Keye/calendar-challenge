@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import Logout from './Logout';
 import { endOf, startOf } from '../date';
 import { DISCOVERY_DOCS, SCOPES } from '../constants';
@@ -10,15 +11,10 @@ const API_KEY = process.env.API_KEY;
 /**
  *  On load, called to load the auth2 library and API client library.
  */
-function handleClientLoad({
-  setCalendars,
-  setEvents,
-  setIsSignedIn,
-  setCategories,
-}) {
+function handleClientLoad({ setCalendars, setEvents, setIsSignedIn, setCategories }) {
   window.gapi.load(
     'client:auth2',
-    initClient.bind({ setCalendars, setEvents, setIsSignedIn, setCategories })
+    initClient.bind({ setCalendars, setEvents, setIsSignedIn, setCategories }),
   );
 }
 
@@ -39,30 +35,25 @@ function initClient() {
       discoveryDocs: DISCOVERY_DOCS,
       scope: SCOPES,
     })
-    .then(
-      function () {
-        // Listen for sign-in state changes.
-        window.gapi.auth2.getAuthInstance().isSignedIn.listen(
-          updateSigninStatus.bind({
-            setCalendars,
-            setEvents,
-            setIsSignedIn,
-            setCategories,
-          })
-        );
-
-        // Handle the initial sign-in state.
+    .then(function () {
+      // Listen for sign-in state changes.
+      window.gapi.auth2.getAuthInstance().isSignedIn.listen(
         updateSigninStatus.bind({
           setCalendars,
           setEvents,
           setIsSignedIn,
           setCategories,
-        })(window.gapi.auth2.getAuthInstance().isSignedIn.get());
-      },
-      function (error) {
-        appendPre(JSON.stringify(error, null, 2));
-      }
-    );
+        }),
+      );
+
+      // Handle the initial sign-in state.
+      updateSigninStatus.bind({
+        setCalendars,
+        setEvents,
+        setIsSignedIn,
+        setCategories,
+      })(window.gapi.auth2.getAuthInstance().isSignedIn.get());
+    });
 }
 
 /**
@@ -79,21 +70,19 @@ function updateSigninStatus(isSignedIn) {
 /**
  *  Sign in the user upon button click.
  */
-function handleAuthClick(event) {
+function handleAuthClick() {
   window.gapi.auth2.getAuthInstance().signIn();
 }
 
 /**
  *  Sign out the user upon button click.
  */
-function handleSignoutClick(event) {
+function handleSignoutClick() {
   window.gapi.auth2.getAuthInstance().signOut();
 }
 
 /**
- * Print the summary and start datetime/date of the next ten events in
- * the authorized user's calendar. If no events are found an
- * appropriate message is printed.
+ * Fetch and build each events for all calendars
  */
 function getCurrentWeekEvents(calendar, lastItem, callback) {
   const { id } = calendar;
@@ -114,9 +103,10 @@ function getCurrentWeekEvents(calendar, lastItem, callback) {
     });
 }
 
-/*
-  Print Calendars
-*/
+/**
+ * Fetch user calendars, categories and associated events
+ * set the states of the app
+ */
 const getUserCalendarList = (setCalendars, setEvents, setCategories) => {
   window.gapi.client.calendar.calendarList
     .list({
@@ -134,9 +124,7 @@ const getUserCalendarList = (setCalendars, setEvents, setCategories) => {
         let { summary, backgroundColor } = calendar;
         if (newEvents.length > 0) {
           for (let i = 0; i < newEvents.length; i++) {
-            let { summary: eventSummary, id: eventId, start, end } = newEvents[
-              i
-            ];
+            let { summary: eventSummary, id: eventId, start, end } = newEvents[i];
             events.push({
               summary: eventSummary,
               id: eventId,
@@ -175,7 +163,7 @@ const GoogleAuthCalendar = ({ setCalendars, setEvents, setCategories }) => {
 
   useEffect(() => {
     handleClientLoad({ setCalendars, setEvents, setIsSignedIn, setCategories });
-  }, []);
+  }, [setCalendars, setEvents, setIsSignedIn, setCategories]);
 
   return (
     <div>
@@ -191,6 +179,12 @@ const GoogleAuthCalendar = ({ setCalendars, setEvents, setCategories }) => {
       )}
     </div>
   );
+};
+
+GoogleAuthCalendar.propTypes = {
+  setCalendars: PropTypes.func.isRequired,
+  setEvents: PropTypes.func.isRequired,
+  setCategories: PropTypes.func,
 };
 
 export default GoogleAuthCalendar;

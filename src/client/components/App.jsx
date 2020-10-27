@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import CalendarHeader from './CalendarHeader';
 import Calendars from './Calendars';
 import CalendarEvents from './CalendarEvents';
@@ -23,25 +24,23 @@ export const CalendarView = (props) => {
           selectedCalendarCategories={categories}
           toggleSelectedCalendar={toggleSelectedCalendar}
         />
-        <CalendarEvents
-          selectedEvents={events}
-          selectedCalendarCategories={categories}
-        />
+        <CalendarEvents selectedEvents={events} selectedCalendarCategories={categories} />
       </div>
     </div>
   );
+};
+
+CalendarView.propTypes = {
+  calendars: PropTypes.array,
+  categories: PropTypes.array,
+  events: PropTypes.array,
+  setCategories: PropTypes.func,
 };
 
 const App = () => {
   const [calendars, setCalendars] = useState([]);
   const [events, setEvents] = useState([]);
   const [categories, setCategories] = useState([]);
-
-  // useEffect(() => {
-  //   setCalendarApiResponse(handleClientLoad());
-
-  //   return () => setCalendarApiResponse(null);
-  // }, [calendarApiResponse]);
 
   return (
     <div>

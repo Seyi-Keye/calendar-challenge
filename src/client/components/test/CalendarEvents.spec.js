@@ -7,15 +7,7 @@ import { getDateToday, getDay, getWeekDates, addSomeHours } from '../../date';
 const events = mock.calenderEvents.events;
 const categories = [events[0].category];
 const activeDay = String(getDateToday());
-const weekdays = [
-  'Sunday',
-  'Monday',
-  'Tuesday',
-  'Wednesday',
-  'Thursday',
-  'Friday',
-  'Saturday',
-];
+const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 const start = {
   dateTime: new Date(),
@@ -23,38 +15,32 @@ const start = {
 const end = {
   dateTime: addSomeHours(),
 };
-const oneEvent = [{...events[0], start, end}];
+const oneEvent = [{ ...events[0], start, end }];
 
-const datesAndWeekdays =  weekdays.map((day, i) => 
-  `${getDay(getWeekDates()[i])} ${day}`
-);
+const datesAndWeekdays = weekdays.map((day, i) => `${getDay(getWeekDates()[i])} ${day}`);
 
 const hourTimer = (date) =>
-    new Date(date).toLocaleString('en-US', {
-      hour: 'numeric',
-      minute: 'numeric',
-      hour12: true,
-    });
+  new Date(date).toLocaleString('en-US', {
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: true,
+  });
 
 const timeDuration = hourTimer(new Date()) + ' - ' + hourTimer(addSomeHours());
 
 describe('<CalendarEvents />', () => {
   it('renders calendar', () => {
     const wrapper = shallow(
-    <CalendarEvents 
-      selectedEvents={events}
-      selectedCalendarCategories={categories} 
-    />);
+      <CalendarEvents selectedEvents={events} selectedCalendarCategories={categories} />,
+    );
 
     expect(wrapper.find('.calendar').length).toEqual(1);
   });
 
   it('renders 7 weekdays and current date with weekday', () => {
     const wrapper = shallow(
-    <CalendarEvents 
-      selectedEvents={events}
-      selectedCalendarCategories={categories} 
-    />);
+      <CalendarEvents selectedEvents={events} selectedCalendarCategories={categories} />,
+    );
 
     expect(wrapper.find('.weekday').length).toEqual(7);
     expect(wrapper.find('.weekday').map((node) => node.text())).toEqual(datesAndWeekdays);
@@ -63,10 +49,8 @@ describe('<CalendarEvents />', () => {
 
   it('renders active class and day', () => {
     const wrapper = shallow(
-    <CalendarEvents 
-      selectedEvents={events}
-      selectedCalendarCategories={categories} 
-    />);
+      <CalendarEvents selectedEvents={events} selectedCalendarCategories={categories} />,
+    );
 
     expect(wrapper.find('.active').length).toEqual(1);
     expect(wrapper.find('.active').text()).toEqual(activeDay);
@@ -74,10 +58,8 @@ describe('<CalendarEvents />', () => {
 
   it('renders an event on the calendar', () => {
     const wrapper = shallow(
-      <CalendarEvents 
-        selectedEvents={oneEvent}
-        selectedCalendarCategories={categories} 
-      />);
+      <CalendarEvents selectedEvents={oneEvent} selectedCalendarCategories={categories} />,
+    );
 
     expect(wrapper.find('.eventSummary').text()).toEqual('Suggestion box');
     expect(wrapper.find('.eventTime').text()).toEqual(timeDuration);

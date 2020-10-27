@@ -29,4 +29,3 @@ describe('<CalendarHeader />', () => {
     expect(wrapper.text()).toEqual(nodeText);
   });
 });
-

@@ -5,9 +5,9 @@ import bodyParser from 'body-parser';
 import path from 'path';
 import webpack from 'webpack';
 import webpackHotMiddleware from 'webpack-hot-middleware';
+import webpackDevMiddleware from 'webpack-dev-middleware';
 import dotenv from 'dotenv';
 import config from './webpack.config.dev';
-
 
 dotenv.config();
 
@@ -17,7 +17,7 @@ const compiler = webpack(config);
 app.use(
   webpackDevMiddleware(compiler, {
     publicPath: config.output.publicPath,
-  })
+  }),
 );
 
 app.use(webpackHotMiddleware(compiler));

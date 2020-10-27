@@ -1,11 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Calendars = (props) => {
-  const {
-    selectedCalendarCategories,
-    toggleSelectedCalendar,
-    calendars,
-  } = props;
+  const { selectedCalendarCategories, toggleSelectedCalendar, calendars } = props;
 
   const selectedClass = (summary) =>
     selectedCalendarCategories.includes(summary) ? 'card selected' : 'card';
@@ -36,6 +33,12 @@ const Calendars = (props) => {
       </ul>
     </div>
   );
+};
+
+Calendars.propTypes = {
+  selectedCalendarCategories: PropTypes.array,
+  calendars: PropTypes.array,
+  toggleSelectedCalendar: PropTypes.func,
 };
 
 export default Calendars;
