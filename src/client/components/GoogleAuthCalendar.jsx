@@ -158,9 +158,13 @@ const getUserCalendarList = (setCalendars, setEvents, setCategories) => {
     });
 };
 
-const GoogleAuthCalendar = ({ setCalendars, setEvents, setCategories }) => {
-  const [isSignedIn, setIsSignedIn] = useState(false);
-
+const GoogleAuthCalendar = ({
+  isSignedIn,
+  setCalendars,
+  setCategories,
+  setEvents,
+  setIsSignedIn,
+}) => {
   useEffect(() => {
     handleClientLoad({ setCalendars, setEvents, setIsSignedIn, setCategories });
   }, [setCalendars, setEvents, setIsSignedIn, setCategories]);
@@ -175,7 +179,9 @@ const GoogleAuthCalendar = ({ setCalendars, setEvents, setCategories }) => {
           setCategories={setCategories}
         />
       ) : (
-        <button onClick={handleAuthClick}>Login</button>
+        <div className="login">
+          <button onClick={handleAuthClick}>Login</button>
+        </div>
       )}
     </div>
   );
