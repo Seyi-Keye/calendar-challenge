@@ -24,10 +24,7 @@ export const CalendarView = (props) => {
           selectedCalendarCategories={categories}
           toggleSelectedCalendar={toggleSelectedCalendar}
         />
-        <CalendarEvents
-          selectedEvents={events}
-          selectedCalendarCategories={categories}
-        />
+        <CalendarEvents selectedEvents={events} selectedCalendarCategories={categories} />
       </div>
     </div>
   );

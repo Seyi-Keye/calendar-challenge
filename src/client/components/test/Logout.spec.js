@@ -11,12 +11,13 @@ const event = { preventDefault: jest.fn() };
 describe('<Logout />', () => {
   it('renders logout button and logs user out', () => {
     const wrapper = shallow(
-    <Logout 
-      handleSignoutClick={handleSignoutClick}
-      setCalendars={setCalendars}
-      setEvents={setEvents}
-      setCategories={setCategories}
-    />);
+      <Logout
+        handleSignoutClick={handleSignoutClick}
+        setCalendars={setCalendars}
+        setEvents={setEvents}
+        setCategories={setCategories}
+      />,
+    );
 
     expect(wrapper.find('button').length).toEqual(1);
 

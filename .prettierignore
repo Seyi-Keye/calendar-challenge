@@ -14,5 +14,9 @@ coverage
 .vscode
 yarn-error.log
 src/client/calendar.scss
+__mocks__
+.eslintignore
 dist
+.eslintrc.js
 jest.setup.js
+jest.config.json

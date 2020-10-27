@@ -9,7 +9,6 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import dotenv from 'dotenv';
 import config from './webpack.config.dev';
 
-
 dotenv.config();
 
 const app = express();
@@ -18,7 +17,7 @@ const compiler = webpack(config);
 app.use(
   webpackDevMiddleware(compiler, {
     publicPath: config.output.publicPath,
-  })
+  }),
 );
 
 app.use(webpackHotMiddleware(compiler));

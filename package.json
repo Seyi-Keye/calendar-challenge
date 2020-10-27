@@ -9,7 +9,9 @@
     "build": "rm -rf dist && webpack --mode development --config webpack.config.server.js && webpack --config=webpack.config.prod.js",
     "start": "node ./dist/server.js",
     "start:dev": "nodemon --exec babel-node server-dev.js",
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint --ignore-path .prettierignore \"src/client/components/**/*.{js,jsx}\"",
+    "lint:fix": "npm run lint -- --fix"
   },
   "repository": {
     "type": "git",
@@ -39,6 +41,7 @@
     "morgan": "^1.10.0",
     "node-sass": "^4.14.1",
     "optimize-css-assets-webpack-plugin": "^5.0.4",
+    "prettier": "^2.1.2",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "sass-loader": "^10.0.3",
@@ -55,6 +58,12 @@
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
     "eslint": "^7.11.0",
+    "eslint-config-prettier": "^6.14.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-webpack-plugin": "^2.1.0",
     "html-webpack-plugin": "^4.5.0",
     "jest": "^26.6.1",
     "json5-loader": "^4.0.1",

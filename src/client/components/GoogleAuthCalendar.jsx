@@ -11,15 +11,10 @@ const API_KEY = process.env.API_KEY;
 /**
  *  On load, called to load the auth2 library and API client library.
  */
-function handleClientLoad({
-  setCalendars,
-  setEvents,
-  setIsSignedIn,
-  setCategories,
-}) {
+function handleClientLoad({ setCalendars, setEvents, setIsSignedIn, setCategories }) {
   window.gapi.load(
     'client:auth2',
-    initClient.bind({ setCalendars, setEvents, setIsSignedIn, setCategories })
+    initClient.bind({ setCalendars, setEvents, setIsSignedIn, setCategories }),
   );
 }
 
@@ -40,30 +35,25 @@ function initClient() {
       discoveryDocs: DISCOVERY_DOCS,
       scope: SCOPES,
     })
-    .then(
-      function () {
-        // Listen for sign-in state changes.
-        window.gapi.auth2.getAuthInstance().isSignedIn.listen(
-          updateSigninStatus.bind({
-            setCalendars,
-            setEvents,
-            setIsSignedIn,
-            setCategories,
-          })
-        );
-
-        // Handle the initial sign-in state.
+    .then(function () {
+      // Listen for sign-in state changes.
+      window.gapi.auth2.getAuthInstance().isSignedIn.listen(
         updateSigninStatus.bind({
           setCalendars,
           setEvents,
           setIsSignedIn,
           setCategories,
-        })(window.gapi.auth2.getAuthInstance().isSignedIn.get());
-      },
-      function (error) {
-        appendPre(JSON.stringify(error, null, 2));
-      }
-    );
+        }),
+      );
+
+      // Handle the initial sign-in state.
+      updateSigninStatus.bind({
+        setCalendars,
+        setEvents,
+        setIsSignedIn,
+        setCategories,
+      })(window.gapi.auth2.getAuthInstance().isSignedIn.get());
+    });
 }
 
 /**
@@ -80,14 +70,14 @@ function updateSigninStatus(isSignedIn) {
 /**
  *  Sign in the user upon button click.
  */
-function handleAuthClick(event) {
+function handleAuthClick() {
   window.gapi.auth2.getAuthInstance().signIn();
 }
 
 /**
  *  Sign out the user upon button click.
  */
-function handleSignoutClick(event) {
+function handleSignoutClick() {
   window.gapi.auth2.getAuthInstance().signOut();
 }
 
@@ -134,9 +124,7 @@ const getUserCalendarList = (setCalendars, setEvents, setCategories) => {
         let { summary, backgroundColor } = calendar;
         if (newEvents.length > 0) {
           for (let i = 0; i < newEvents.length; i++) {
-            let { summary: eventSummary, id: eventId, start, end } = newEvents[
-              i
-            ];
+            let { summary: eventSummary, id: eventId, start, end } = newEvents[i];
             events.push({
               summary: eventSummary,
               id: eventId,
@@ -175,7 +163,7 @@ const GoogleAuthCalendar = ({ setCalendars, setEvents, setCategories }) => {
 
   useEffect(() => {
     handleClientLoad({ setCalendars, setEvents, setIsSignedIn, setCategories });
-  }, []);
+  }, [setCalendars, setEvents, setIsSignedIn, setCategories]);
 
   return (
     <div>

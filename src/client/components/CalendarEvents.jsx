@@ -15,15 +15,7 @@ const CalendarEvents = (props) => {
   const { selectedEvents, selectedCalendarCategories } = props;
 
   const getWeek = getWeekDates();
-  const weekdays = [
-    'Sunday',
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
-  ];
+  const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
   /**
    * Format time to 12 hours AM/PM
@@ -36,10 +28,7 @@ const CalendarEvents = (props) => {
     });
 
   const range = (start, stop, step) =>
-    Array.from(
-      { length: (stop - start) / step + 1 },
-      (_, i) => start + i * step
-    );
+    Array.from({ length: (stop - start) / step + 1 }, (_, i) => start + i * step);
 
   /**
    * Display hourly time from 12AM to 11PM
@@ -75,13 +64,8 @@ const CalendarEvents = (props) => {
         let startDate = start.dateTime || start.date;
         const endDate = end.dateTime || end.date;
         let selectedCalendar =
-          selectedCalendarCategories &&
-          selectedCalendarCategories.includes(category);
-        return (
-          selectedCalendar &&
-          isSameHour(startDate, hour) &&
-          isSameDay(endDate, currentDay)
-        );
+          selectedCalendarCategories && selectedCalendarCategories.includes(category);
+        return selectedCalendar && isSameHour(startDate, hour) && isSameDay(endDate, currentDay);
       });
 
       if (currentDayEvents.length) {
@@ -113,9 +97,7 @@ const CalendarEvents = (props) => {
                   }}
                 >
                   <p className="eventSummary">{summary}</p>{' '}
-                  <p className="eventTime">
-                    {hourTimer(startDate) + ' - ' + hourTimer(endDate)}
-                  </p>
+                  <p className="eventTime">{hourTimer(startDate) + ' - ' + hourTimer(endDate)}</p>
                 </div>
               );
             })}
