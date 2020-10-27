@@ -162,8 +162,12 @@ const GoogleAuthCalendar = ({
           setCategories={setCategories}
         />
       ) : (
-        <div className="login">
-          <button onClick={handleAuthClick}>Login</button>
+        <div className="homepage">
+          <h1> Welcome to Keyz Calendar</h1>
+          <p>Use the login button to connect your Google calendar and view your week's events</p>
+          <div className="login">
+            <button onClick={handleAuthClick}>Login to Google</button>
+          </div>
         </div>
       )}
     </div>

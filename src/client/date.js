@@ -28,10 +28,10 @@ export const getDifferenceInMinutes = (startTime, endTime) => {
 export const getTheMinutes = (date) => getMinutes(new Date(date));
 export const getDateToday = () => getDate(new Date());
 export const get12hourFormat = (x) => {
-  if (x === -1) {
-    return '';
-  } else if (x === 0) {
+  if (x === 0) {
     return '12 AM';
+  } else if (x === 12) {
+    return '12 PM';
   } else if (x < 12) {
     return `${x} AM`;
   } else {

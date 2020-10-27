@@ -34,7 +34,7 @@ const CalendarEvents = (props) => {
    * Display hourly time from 12AM to 11PM
    */
   const timeConverter = () =>
-    range(-1, 24, 1).map((x) => {
+    range(0, 24, 1).map((x) => {
       let time = get12hourFormat(x);
 
       return (
@@ -121,16 +121,27 @@ const CalendarEvents = (props) => {
 
   return (
     <div className="calendar">
+      <div className="stick">
+        <div className="stickyHeader">{''}</div>
+        <div className="weekdays">
+          {weekdays.map((weekday, i) => {
+            return (
+              <div className="weekday" key={weekday}>
+                <div className="heading" key={weekday}>
+                  {currentDate(i)}
+                  <div> {weekday}</div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
       <div className="layout">
         <div>{timeConverter()}</div>
         <div className="weekdays">
           {weekdays.map((weekday, i) => {
             return (
               <div className="weekday" key={weekday}>
-                <div className="timeslot" key={weekday}>
-                  {currentDate(i)}
-                  <div> {weekday}</div>
-                </div>
                 <div>{eventConverter(selectedEvents, getWeek[i])}</div>
               </div>
             );

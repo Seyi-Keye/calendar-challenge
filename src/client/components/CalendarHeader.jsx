@@ -23,7 +23,7 @@ const CalendarHeader = () => {
 
   return (
     <div className="header">
-      <p>{`${months[month]} ${year}`}</p>
+      <p>{`${months[month]}, ${year}`}</p>
     </div>
   );
 };

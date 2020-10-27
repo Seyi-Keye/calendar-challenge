@@ -9,7 +9,11 @@ const Logout = ({ handleSignoutClick, setCalendars, setEvents, setCategories }) 
     setEvents([]);
     setCategories([]);
   };
-  return <button onClick={onSignOutClick}>Log Out</button>;
+  return (
+    <div className="logout">
+      <button onClick={onSignOutClick}>Log Out</button>
+    </div>
+  );
 };
 
 Logout.propTypes = {
