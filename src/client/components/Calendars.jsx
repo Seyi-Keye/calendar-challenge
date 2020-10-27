@@ -5,7 +5,7 @@ const Calendars = (props) => {
   const { selectedCalendarCategories, toggleSelectedCalendar, calendars } = props;
 
   const selectedClass = (summary) =>
-    selectedCalendarCategories.includes(summary) ? 'card selected' : 'card';
+    selectedCalendarCategories.includes(summary) ? 'selected' : '';
 
   return (
     <div className="calendars">
@@ -16,7 +16,7 @@ const Calendars = (props) => {
             return (
               <li key={calendar.id}>
                 <div
-                  className={selectedClass(calendar.summary)}
+                  className={`card ${selectedClass(calendar.summary)}`}
                   onClick={() => toggleSelectedCalendar(calendar.summary)}
                 >
                   <div

@@ -84,10 +84,10 @@ function handleSignoutClick() {
 /**
  * Fetch and build each events for all calendars
  */
-function getCurrentWeekEvents(calendar, lastItem, callback) {
-  const { id } = calendar;
+function getCurrentWeekEvents(calendar) {
+  const { id, summary, backgroundColor } = calendar;
 
-  window.gapi.client.calendar.events
+  return window.gapi.client.calendar.events
     .list({
       calendarId: id,
       timeMin: new Date(startOf).toISOString(),
@@ -97,9 +97,16 @@ function getCurrentWeekEvents(calendar, lastItem, callback) {
       orderBy: 'startTime',
     })
     .then(function (response) {
-      let weekEvents = response.result.items;
-
-      callback(weekEvents, lastItem, calendar);
+      return response.result.items
+        .map((item) => ({ ...item, category: summary, backgroundColor }))
+        .map(({ id, category, summary, backgroundColor, start, end }) => ({
+          id,
+          category,
+          summary,
+          backgroundColor,
+          start,
+          end,
+        }));
     });
 }
 
@@ -114,53 +121,33 @@ const getUserCalendarList = (setCalendars, setEvents, setCategories) => {
       singleEvents: true,
       orderBy: 'startTime',
     })
-    .then(function (response) {
+    .then((response) => {
       const calendarsResponse = response.result.items;
-      let calendars = [];
-      let events = [];
-      let categories = [];
+      let calendars = calendarsResponse.map(({ backgroundColor, id, summary }) => ({
+        backgroundColor,
+        id,
+        summary,
+      }));
+      let categories = [calendars[0].summary];
 
-      let callback = (newEvents, lastItem, calendar) => {
-        let { summary, backgroundColor } = calendar;
-        if (newEvents.length > 0) {
-          for (let i = 0; i < newEvents.length; i++) {
-            let { summary: eventSummary, id: eventId, start, end } = newEvents[i];
-            events.push({
-              summary: eventSummary,
-              id: eventId,
-              start,
-              end,
-              category: summary,
-              backgroundColor,
-            });
-          }
-        }
+      setCalendars(calendars);
+      setCategories(categories);
 
-        if (lastItem) {
-          setEvents(events);
-        }
-      };
-
-      const count = calendarsResponse.length;
-      if (count > 0) {
-        for (let i = 0; i < count; i++) {
-          const { backgroundColor, id, summary } = calendarsResponse[i];
-          calendars.push({ backgroundColor, id, summary });
-
-          const lastItem = i + 1 === count;
-          getCurrentWeekEvents(calendarsResponse[i], lastItem, callback);
-        }
-
-        categories.push(calendars[0].summary);
-        setCalendars(calendars);
-        setCategories(categories);
-      }
+      return Promise.all(
+        calendarsResponse.map((x) => {
+          return getCurrentWeekEvents(x);
+        }),
+      ).then((events) => setEvents(events.flat()));
     });
 };
 
-const GoogleAuthCalendar = ({ setCalendars, setEvents, setCategories }) => {
-  const [isSignedIn, setIsSignedIn] = useState(false);
-
+const GoogleAuthCalendar = ({
+  isSignedIn,
+  setCalendars,
+  setCategories,
+  setEvents,
+  setIsSignedIn,
+}) => {
   useEffect(() => {
     handleClientLoad({ setCalendars, setEvents, setIsSignedIn, setCategories });
   }, [setCalendars, setEvents, setIsSignedIn, setCategories]);
@@ -175,7 +162,9 @@ const GoogleAuthCalendar = ({ setCalendars, setEvents, setCategories }) => {
           setCategories={setCategories}
         />
       ) : (
-        <button onClick={handleAuthClick}>Login</button>
+        <div className="login">
+          <button onClick={handleAuthClick}>Login</button>
+        </div>
       )}
     </div>
   );

@@ -41,6 +41,7 @@ const App = () => {
   const [calendars, setCalendars] = useState([]);
   const [events, setEvents] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [isSignedIn, setIsSignedIn] = useState(false);
 
   return (
     <div>
@@ -48,8 +49,10 @@ const App = () => {
         setCalendars={setCalendars}
         setEvents={setEvents}
         setCategories={setCategories}
+        setIsSignedIn={setIsSignedIn}
+        isSignedIn={isSignedIn}
       />
-      {calendars && (
+      {isSignedIn && (
         <CalendarView
           calendars={calendars}
           events={events}
@@ -57,7 +60,6 @@ const App = () => {
           setCategories={setCategories}
         />
       )}
-      ;
     </div>
   );
 };
