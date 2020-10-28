@@ -229,8 +229,16 @@ button:focus {
   display: flex;
 }
 
-.eventSummary, .eventTime {
+.eventSummary {
   color: white;
+  font-size: small;    
+  margin-top: 4px;
+}
+
+.eventTime {
+  color: white;
+  font-size: smaller;
+  margin-top: 4px;
 }
 
 .stick {
