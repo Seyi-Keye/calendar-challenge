@@ -5,8 +5,7 @@ import App, { CalendarView } from '../App';
 describe('<App />', () => {
   it('renders <GoogleAuthCalendar />  and <CalendarView /> components', () => {
     const wrapper = shallow(<App />);
-
-    expect(wrapper.find('GoogleAuthCalendar').length).toEqual(1);
+    expect(wrapper.find('GoogleAuthCalendar').length).toBe(1);
     expect(wrapper.find('CalendarView').length).toEqual(1);
   });
 });
