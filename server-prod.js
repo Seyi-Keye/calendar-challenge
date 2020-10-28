@@ -2,7 +2,6 @@ import path from 'path';
 import express from 'express';
 
 const dotenv = require('dotenv');
-
 dotenv.config();
 
 const app = express();
