@@ -112,11 +112,26 @@ const CalendarEvents = (props) => {
   /**
    * Display date and style current date as active
    */
-  const currentDate = (i) => {
-    if (getDay(getWeek[i]) === getDateToday()) {
-      return <div className="active">{getDay(getWeek[i])}</div>;
+  const currentDate = (index, weekday) => {
+    const backgroundColor = selectedEvents
+      ? selectedEvents[0] && selectedEvents[0].backgroundColor
+      : 'red';
+    if (getDay(getWeek[index]) === getDateToday()) {
+      return (
+        <>
+          <div className="active" style={{ backgroundColor }}>
+            {getDay(getWeek[index])}
+          </div>
+          <div className="activeDay"> {weekday}</div>
+        </>
+      );
     }
-    return <div>{getDay(getWeek[i])}</div>;
+    return (
+      <>
+        <div>{getDay(getWeek[index])}</div>
+        <div> {weekday}</div>
+      </>
+    );
   };
 
   return (
@@ -124,12 +139,12 @@ const CalendarEvents = (props) => {
       <div className="stick">
         <div className="stickyHeader">{''}</div>
         <div className="weekdays">
-          {weekdays.map((weekday, i) => {
+          {weekdays.map((weekday, index) => {
             return (
               <div className="weekday" key={weekday}>
                 <div className="heading" key={weekday}>
-                  {currentDate(i)}
-                  <div> {weekday}</div>
+                  {currentDate(index, weekday)}
+                  {/* <div className="activeDay"> {weekday}</div> */}
                 </div>
               </div>
             );

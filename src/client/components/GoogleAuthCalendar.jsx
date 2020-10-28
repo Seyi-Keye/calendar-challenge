@@ -134,8 +134,8 @@ const getUserCalendarList = (setCalendars, setEvents, setCategories) => {
       setCategories(categories);
 
       return Promise.all(
-        calendarsResponse.map((x) => {
-          return getCurrentWeekEvents(x);
+        calendarsResponse.map((calendar) => {
+          return getCurrentWeekEvents(calendar);
         }),
       ).then((events) => setEvents(events.flat()));
     });
