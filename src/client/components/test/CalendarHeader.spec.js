@@ -21,7 +21,7 @@ const date = new Date();
 
 const month = getThisMonth(date);
 const year = getThisYear(date);
-const nodeText = `${months[month]} ${year}`;
+const nodeText = `${months[month]}, ${year}`;
 
 describe('<CalendarHeader />', () => {
   it('renders current month and year', () => {

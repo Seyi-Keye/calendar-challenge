@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Logout from './Logout';
 import { endOf, startOf } from '../date';
@@ -134,8 +134,8 @@ const getUserCalendarList = (setCalendars, setEvents, setCategories) => {
       setCategories(categories);
 
       return Promise.all(
-        calendarsResponse.map((x) => {
-          return getCurrentWeekEvents(x);
+        calendarsResponse.map((calendar) => {
+          return getCurrentWeekEvents(calendar);
         }),
       ).then((events) => setEvents(events.flat()));
     });
@@ -164,7 +164,9 @@ const GoogleAuthCalendar = ({
       ) : (
         <div className="homepage">
           <h1> Welcome to Keyz Calendar</h1>
-          <p>Use the login button to connect your Google calendar and view your week's events</p>
+          <p>
+            Use the login button to connect your Google calendar and view your events for this week
+          </p>
           <div className="login">
             <button onClick={handleAuthClick}>Login to Google</button>
           </div>
@@ -178,6 +180,8 @@ GoogleAuthCalendar.propTypes = {
   setCalendars: PropTypes.func.isRequired,
   setEvents: PropTypes.func.isRequired,
   setCategories: PropTypes.func,
+  isSignedIn: PropTypes.bool.isRequired,
+  setIsSignedIn: PropTypes.func.isRequired,
 };
 
 export default GoogleAuthCalendar;

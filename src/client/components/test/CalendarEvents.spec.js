@@ -12,9 +12,8 @@ const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Frida
 const start = {
   dateTime: new Date(),
 };
-const end = {
-  dateTime: addSomeHours(),
-};
+const end = { dateTime: addSomeHours() };
+
 const oneEvent = [{ ...events[0], start, end }];
 
 const datesAndWeekdays = weekdays.map((day, i) => `${getDay(getWeekDates()[i])} ${day}`);
@@ -42,9 +41,9 @@ describe('<CalendarEvents />', () => {
       <CalendarEvents selectedEvents={events} selectedCalendarCategories={categories} />,
     );
 
-    expect(wrapper.find('.weekday').length).toEqual(7);
-    expect(wrapper.find('.weekday').map((node) => node.text())).toEqual(datesAndWeekdays);
-    expect(wrapper.find('.timeslot').length).toEqual(182);
+    expect(wrapper.find('.weekday').length).toEqual(14);
+    expect(wrapper.find('.heading').map((node) => node.text())).toEqual(datesAndWeekdays);
+    expect(wrapper.find('.timeslot').length).toEqual(175);
   });
 
   it('renders active class and day', () => {
