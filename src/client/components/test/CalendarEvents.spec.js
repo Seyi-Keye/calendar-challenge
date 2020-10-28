@@ -1,9 +1,8 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import CalendarEvents from '../CalendarEvents';
 import mock from '../../mock.json';
 import { getDateToday, getDay, getWeekDates, addSomeHours } from '../../date';
-import { it } from 'date-fns/locale';
 
 const events = mock.calenderEvents.events;
 const categories = [events[0].category];
@@ -13,9 +12,8 @@ const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Frida
 const start = {
   dateTime: new Date(),
 };
-const end = {
-  dateTime: addSomeHours(),
-};
+const end = { dateTime: addSomeHours() };
+
 const oneEvent = [{ ...events[0], start, end }];
 
 const datesAndWeekdays = weekdays.map((day, i) => `${getDay(getWeekDates()[i])} ${day}`);
@@ -44,8 +42,8 @@ describe('<CalendarEvents />', () => {
     );
 
     expect(wrapper.find('.weekday').length).toEqual(14);
-    expect(wrapper.find('.weekday').map((node) => node.text())).toEqual(datesAndWeekdays);
-    expect(wrapper.find('.timeslot').length).toEqual(182);
+    expect(wrapper.find('.heading').map((node) => node.text())).toEqual(datesAndWeekdays);
+    expect(wrapper.find('.timeslot').length).toEqual(175);
   });
 
   it('renders active class and day', () => {
@@ -64,17 +62,5 @@ describe('<CalendarEvents />', () => {
 
     expect(wrapper.find('.eventSummary').text()).toEqual('Suggestion box');
     expect(wrapper.find('.eventTime').text()).toEqual(timeDuration);
-  });
-});
-
-
-describe('<CalendarEvents />', () => {
-  it('calls currentDate function', () => {
-    const wrapper = mount(
-      <CalendarEvents 
-        selectedEvents={oneEvent} 
-        selectedCalendarCategories={categories} 
-      />);
-    expect(wrapper.mock.call.once).toEqual(true);
   });
 });

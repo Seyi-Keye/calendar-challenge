@@ -15,8 +15,9 @@ describe('<GoogleAuthCalendar />', () => {
         setCategories={setCategories}
       />,
     );
-    
-    const nodeText = " Welcome to Keyz CalendarUse the login button to connect your Google calendar and view your week's eventsLogin to Google"
+
+    const nodeText =
+      " Welcome to Keyz CalendarUse the login button to connect your Google calendar and view your week's eventsLogin to Google";
     expect(wrapper.find('button').length).toEqual(1);
     expect(wrapper.text()).toEqual(nodeText);
   });

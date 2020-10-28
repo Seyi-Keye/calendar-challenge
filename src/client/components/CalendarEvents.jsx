@@ -144,7 +144,6 @@ const CalendarEvents = (props) => {
               <div className="weekday" key={weekday}>
                 <div className="heading" key={weekday}>
                   {currentDate(index, weekday)}
-                  {/* <div className="activeDay"> {weekday}</div> */}
                 </div>
               </div>
             );

@@ -3,10 +3,9 @@ import { shallow } from 'enzyme';
 import App, { CalendarView } from '../App';
 
 describe('<App />', () => {
-  it('renders <GoogleAuthCalendar />  and <CalendarView /> components', () => {
+  it('renders homepage when user is not logged in and login components', () => {
     const wrapper = shallow(<App />);
-    expect(wrapper.find('GoogleAuthCalendar').length).toBe(1);
-    expect(wrapper.find('CalendarView').length).toEqual(1);
+    expect(wrapper.find('div').length).toEqual(1);
   });
 });
 
