@@ -6,7 +6,7 @@ This is a Week View app using React that integrates with Google Calendar.
 
 - React v16, Google Account and webpack.
 
-### Feature Requirements
+### Features
 
 - Google Login: Prompt user to login with their Google account
 - Calendar view: Display a static view of the current week showing the 7 days of the week on the x-axis, and 24 hours of the day on the y-axis
@@ -37,6 +37,7 @@ This is a Week View app using React that integrates with Google Calendar.
 ### Linting
 
 This app uses Eslint and Prettier for code formatting.
+- `yarn lint` or `yarn lint:fix`
 
 ### Testing
 
