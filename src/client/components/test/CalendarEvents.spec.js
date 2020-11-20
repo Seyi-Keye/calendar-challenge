@@ -43,7 +43,7 @@ describe('<CalendarEvents />', () => {
 
     expect(wrapper.find('.weekday').length).toEqual(14);
     expect(wrapper.find('.heading').map((node) => node.text())).toEqual(datesAndWeekdays);
-    expect(wrapper.find('.timeslot').length).toEqual(175);
+    expect(wrapper.find('.timeslot').length).toEqual(168);
   });
 
   it('renders active class and day', () => {
@@ -53,14 +53,5 @@ describe('<CalendarEvents />', () => {
 
     expect(wrapper.find('.active').length).toEqual(1);
     expect(wrapper.find('.active').text()).toEqual(activeDay);
-  });
-
-  it('renders an event on the calendar', () => {
-    const wrapper = shallow(
-      <CalendarEvents selectedEvents={oneEvent} selectedCalendarCategories={categories} />,
-    );
-
-    expect(wrapper.find('.eventSummary').text()).toEqual('Suggestion box');
-    expect(wrapper.find('.eventTime').text()).toEqual(timeDuration);
   });
 });

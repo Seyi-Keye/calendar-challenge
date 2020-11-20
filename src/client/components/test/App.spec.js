@@ -14,7 +14,7 @@ describe('<CalendarView />', () => {
     const wrapper = shallow(<CalendarView />);
 
     expect(wrapper.find('.container').length).toEqual(1);
-    expect(wrapper.find('CalendarHeader').length).toEqual(1);
+    expect(wrapper.find('Navigation').length).toEqual(1);
     expect(wrapper.find('CalendarEvents').length).toEqual(1);
   });
 });
