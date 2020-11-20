@@ -6,7 +6,6 @@ const handleSignoutClick = jest.fn();
 const setCalendars = jest.fn();
 const setEvents = jest.fn();
 const setCategories = jest.fn();
-const event = { preventDefault: jest.fn() };
 
 describe('<SignOut />', () => {
   it('renders SignOut button and logs user out', () => {
