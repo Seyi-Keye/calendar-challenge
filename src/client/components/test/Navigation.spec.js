@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { getThisMonth, getThisYear } from '../../date.js';
-import CalendarHeader from '../CalendarHeader';
+import Navigation from '../Navigation';
 
 const months = [
   'January',
@@ -23,9 +23,9 @@ const month = getThisMonth(date);
 const year = getThisYear(date);
 const nodeText = `${months[month]}, ${year}`;
 
-describe('<CalendarHeader />', () => {
+describe('<Navigation />', () => {
   it('renders current month and year', () => {
-    const wrapper = shallow(<CalendarHeader />);
+    const wrapper = shallow(<Navigation />);
     expect(wrapper.text()).toEqual(nodeText);
   });
 });

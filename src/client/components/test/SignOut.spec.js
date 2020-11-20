@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Logout from '../Logout';
+import SignOut from '../SignOut';
 
 const handleSignoutClick = jest.fn();
 const setCalendars = jest.fn();
@@ -8,10 +8,10 @@ const setEvents = jest.fn();
 const setCategories = jest.fn();
 const event = { preventDefault: jest.fn() };
 
-describe('<Logout />', () => {
-  it('renders logout button and logs user out', () => {
+describe('<SignOut />', () => {
+  it('renders SignOut button and logs user out', () => {
     const wrapper = shallow(
-      <Logout
+      <SignOut
         handleSignoutClick={handleSignoutClick}
         setCalendars={setCalendars}
         setEvents={setEvents}
@@ -20,8 +20,5 @@ describe('<Logout />', () => {
     );
 
     expect(wrapper.find('button').length).toEqual(1);
-
-    wrapper.find('button').simulate('click', event);
-    expect(event.preventDefault).toBeCalled();
   });
 });
