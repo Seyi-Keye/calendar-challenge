@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Logout from './Logout';
+import SignOut from './SignOut';
 import { endOf, startOf } from '../date';
 import { DISCOVERY_DOCS, SCOPES } from '../constants';
 
@@ -77,7 +77,7 @@ function handleAuthClick() {
 /**
  *  Sign out the user upon button click.
  */
-function handleSignoutClick() {
+export function handleSignoutClick() {
   window.gapi.auth2.getAuthInstance().signOut();
 }
 
@@ -141,35 +141,23 @@ const getUserCalendarList = (setCalendars, setEvents, setCategories) => {
     });
 };
 
-const GoogleAuthCalendar = ({
-  isSignedIn,
-  setCalendars,
-  setCategories,
-  setEvents,
-  setIsSignedIn,
-}) => {
+const GoogleAuthCalendar = ({ setCalendars, setCategories, setEvents, setIsSignedIn }) => {
   useEffect(() => {
     handleClientLoad({ setCalendars, setEvents, setIsSignedIn, setCategories });
   }, [setCalendars, setEvents, setIsSignedIn, setCategories]);
 
   return (
     <div>
-      {isSignedIn ? (
-        <Logout
-          handleSignoutClick={handleSignoutClick}
-          setCalendars={setCalendars}
-          setEvents={setEvents}
-          setCategories={setCategories}
-        />
-      ) : (
-        <div className="homepage">
-          <h1> Welcome to Keyz Calendar</h1>
-          <p>Use the login button to connect your Google calendar and view your week's events</p>
-          <div className="login">
-            <button onClick={handleAuthClick}>Login to Google</button>
-          </div>
+      <div className="homepage">
+        <h1> Welcome to Keyz Calendar</h1>
+        <p>
+          Use the login button to connect your Google calendar and view your events for this week
+        </p>
+        <div className="login">
+          <button onClick={handleAuthClick}>Login to Google</button>
         </div>
-      )}
+      </div>
+      {/* )} */}
     </div>
   );
 };
@@ -178,6 +166,8 @@ GoogleAuthCalendar.propTypes = {
   setCalendars: PropTypes.func.isRequired,
   setEvents: PropTypes.func.isRequired,
   setCategories: PropTypes.func,
+  isSignedIn: PropTypes.bool.isRequired,
+  setIsSignedIn: PropTypes.func.isRequired,
 };
 
 export default GoogleAuthCalendar;

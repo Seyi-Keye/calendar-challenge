@@ -1,7 +1,8 @@
 import React from 'react';
+import SignOut from './SignOut';
 import { getThisMonth, getThisYear } from '../date.js';
 
-const CalendarHeader = () => {
+const Navigation = ({ setCalendars, setEvents, setCategories }) => {
   const months = [
     'January',
     'February',
@@ -22,10 +23,15 @@ const CalendarHeader = () => {
   const year = getThisYear(date);
 
   return (
-    <div className="header">
+    <div className="navigation">
       <p>{`${months[month]}, ${year}`}</p>
+      {setCalendars && setCategories && setEvents ? (
+        <SignOut setCalendars={setCalendars} setCategories={setCategories} setEvents={setEvents} />
+      ) : (
+        ''
+      )}
     </div>
   );
 };
 
-export default CalendarHeader;
+export default Navigation;

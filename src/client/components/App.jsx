@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import CalendarHeader from './CalendarHeader';
+import Navigation from './Navigation';
 import Calendars from './Calendars';
 import CalendarEvents from './CalendarEvents';
 import GoogleAuthCalendar from './GoogleAuthCalendar';
 import '../calendar.scss';
 
 export const CalendarView = (props) => {
-  const { calendars, categories, events, setCategories } = props;
+  const { calendars, categories, events, setCalendars, setCategories, setEvents } = props;
 
   const toggleSelectedCalendar = (summary) => {
     return categories.includes(summary)
@@ -17,7 +17,7 @@ export const CalendarView = (props) => {
 
   return (
     <div className="container">
-      <CalendarHeader />
+      <Navigation setCalendars={setCalendars} setEvents={setEvents} setCategories={setCategories} />
       <div className="page-layout">
         <Calendars
           calendars={calendars}
@@ -45,19 +45,22 @@ const App = () => {
 
   return (
     <div>
-      <GoogleAuthCalendar
-        setCalendars={setCalendars}
-        setEvents={setEvents}
-        setCategories={setCategories}
-        setIsSignedIn={setIsSignedIn}
-        isSignedIn={isSignedIn}
-      />
-      {isSignedIn && (
+      {isSignedIn ? (
         <CalendarView
           calendars={calendars}
-          events={events}
           categories={categories}
+          events={events}
+          setCalendars={setCalendars}
           setCategories={setCategories}
+          setEvents={setEvents}
+        />
+      ) : (
+        <GoogleAuthCalendar
+          setCalendars={setCalendars}
+          setEvents={setEvents}
+          setCategories={setCategories}
+          setIsSignedIn={setIsSignedIn}
+          isSignedIn={isSignedIn}
         />
       )}
     </div>

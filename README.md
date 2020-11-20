@@ -6,7 +6,7 @@ This is a Week View app using React that integrates with Google Calendar.
 
 - React v16, Google Account and webpack.
 
-### Feature Requirements
+### Features
 
 - Google Login: Prompt user to login with their Google account
 - Calendar view: Display a static view of the current week showing the 7 days of the week on the x-axis, and 24 hours of the day on the y-axis
@@ -24,19 +24,21 @@ This is a Week View app using React that integrates with Google Calendar.
 
 ### To setup this app locally:
 
-- Have Node version v10.14.2 and above installed locally.
+- Have Node version v10.14.2 and above installed locally or checkout guide `https://github.com/nvm-sh/nvm`
 - Clone this repo: `git clone git@github.com:Seyi-Keye/calendar-challenge.git`
-- Cd into the directory where this project is installed. Run `cd calendar-challenge`.
-- To fetch updated yarn packages, run `yarn install --check-files`.
-- To install dependencies, run `yarn install`.
+- Cd into the directory where this project is installed. Run `cd calendar-challenge`
+- To fetch updated yarn packages, run `yarn install --check-files`
+- To install dependencies, run `yarn install`
 - create a `.env` file on your root directory by running `touch .env` on your terminal
 - Use the `.exampleEnv` to get the keys into your `.env`
-- Populate the values of the `.env` file with the shared credentials to connect the app locally before running the app.
-- To start the app locally, run `yarn start:dev`.
+- Populate the values of the `.env` with the shared credentials to connect the app locally
+- To start the app locally, run `yarn start:dev`
+- Navigate to `localhost:8000` on your browser
 
 ### Linting
 
 This app uses Eslint and Prettier for code formatting.
+- `yarn lint` or `yarn lint:fix`
 
 ### Testing
 

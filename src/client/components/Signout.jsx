@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { handleSignoutClick } from './GoogleAuthCalendar';
 
-const Logout = ({ handleSignoutClick, setCalendars, setEvents, setCategories }) => {
+const SignOut = ({ setCalendars, setEvents, setCategories }) => {
   const onSignOutClick = (event) => {
     event.preventDefault();
     handleSignoutClick();
@@ -10,17 +11,16 @@ const Logout = ({ handleSignoutClick, setCalendars, setEvents, setCategories }) 
     setCategories([]);
   };
   return (
-    <div className="logout">
-      <button onClick={onSignOutClick}>Log Out</button>
+    <div className="signOut">
+      <button onClick={onSignOutClick}>Sign Out</button>
     </div>
   );
 };
 
-Logout.propTypes = {
-  handleSignoutClick: PropTypes.func.isRequired,
+SignOut.propTypes = {
   setCalendars: PropTypes.func.isRequired,
   setEvents: PropTypes.func.isRequired,
   setCategories: PropTypes.func.isRequired,
 };
 
-export default Logout;
+export default SignOut;
